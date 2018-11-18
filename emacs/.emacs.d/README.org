@@ -1,0 +1,68 @@
+#+OPTIONS: ':nil *:t -:t ::t <:t H:3 \n:nil ^:t arch:headline
+#+OPTIONS: author:t broken-links:nil c:nil creator:nil
+#+OPTIONS: d:(not "LOGBOOK") date:t e:t email:nil f:t inline:t num:t
+#+OPTIONS: p:nil pri:nil prop:nil stat:t tags:t tasks:t tex:t
+#+OPTIONS: timestamp:t title:t toc:t todo:t |:t
+#+TITLE: README
+#+DATE: <2018-11-06 mar.>
+#+AUTHOR: Enzo Brignon
+#+EMAIL: brignone@nia.lan
+#+LANGUAGE: en
+#+SELECT_TAGS: export
+#+EXCLUDE_TAGS: noexport
+#+CREATOR: Emacs 25.1.1 (Org mode 9.1.14)
+
+* Packages needed to use this config
+** Unsorted
+- xclip :: Used for xclip mode, that permit to copy paste from =emacs -nw= to other windows.
+#+BEGIN_EXAMPLE
+# apt install xclip
+#+END_EXAMPLE
+
+- w3m :: Used for w3m mode
+#+BEGIN_EXAMPLE
+# apt install w3m
+#+END_EXAMPLE
+
+- fonts-powerline :: To get fancy powerline, even in terminal mode
+#+BEGIN_EXAMPLE
+# apt install fonts-powerline
+#+END_EXAMPLE
+
+** For flycheck
+- clang :: Used by company clang, for flychecking the C/C++ files.
+#+BEGIN_EXAMPLE
+# apt install clang
+#+END_EXAMPLE
+
+- lua-check :: Used for flycheck of lua code
+#+BEGIN_EXAMPLE
+# apt install lua5.1 lua-check
+#+END_EXAMPLE
+
+- shellcheck :: Used for flycheck of shell script
+#+BEGIN_EXAMPLE
+# apt install shellcheck
+#+END_EXAMPLE
+
+** For magit
+- git :: Used by magit, which is a git interface for emacs
+#+BEGIN_EXAMPLE
+# apt install git
+#+END_EXAMPLE
+
+* Isues
+** Problem with org mode
+ Be sure to remove all the =.elc= files from =$HOME/.emacs.d/elpa/org-XXXXXX/=
+ #+BEGIN_EXAMPLE
+ $ rm $HOME/.emacs.d/elpa/org-XXXXXX/*.elc
+ #+END_EXAMPLE
+
+ You can then recompile the files from =$HOME/.emacs.d/elpa/org-XXXXXX/= by typing
+ =C-u 0 M-x byte-recompile-directory RET <path to org-XXXXXX> RET= from an emacs session.
+** flycheck for bash
+Be sure to put the shebang =#!/bin/bash= at the begining of your bash scripts
+in order to let flycheck know that your file is a bash script rather than a
+POSIX shell script.
+If flycheck continue thinking that the file is a sh script, try closing and
+reopening the file.
