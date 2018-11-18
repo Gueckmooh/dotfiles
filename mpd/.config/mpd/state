@@ -1,0 +1,102 @@
+sw_volume: 81
+audio_device_state:1:pulse audio
+audio_device_state:1:my_fifo
+state: play
+current: 80
+time: 25.379000
+random: 0
+repeat: 0
+single: 0
+consume: 0
+crossfade: 0
+mixrampdb: 0.000000
+mixrampdelay: -1.000000
+playlist_begin
+0:Jstuff/[Sheldonsuckz] LEO Imai - VLP [FLAC]/02 Bite.flac
+1:Jstuff/[Sheldonsuckz] NakamuraEmi - NIPPONNO ONNAWO UTAU Vol.5 [FLAC]/03 Kakattekoiyo.flac
+2:Jstuff/[Sheldonsuckz] nano.RIPE - Kyokyojitsujitsu [Hi-RES]/01 Kyokyojitsujitsu.flac
+3:Jstuff/[Sheldonsuckz] nano.RIPE - Kyokyojitsujitsu [Hi-RES]/03 Fukaku.flac
+4:Jstuff/[Sheldonsuckz] nano.RIPE - Kyokyojitsujitsu [Hi-RES]/02 Hero.flac
+5:Jstuff/[Sheldonsuckz] 9mm Parabellum Bullet - Sacrifice [FLAC]/02 Gogo no Tori Kago.flac
+6:Jstuff/[Sheldonsuckz] 9mm Parabellum Bullet - Sacrifice [FLAC]/01 Sacrifice.flac
+7:Jstuff/[Sheldonsuckz] 9mm Parabellum Bullet - Inferno [FLAC]/01 Inferno.flac
+8:vrac/ALT236/Leviathan/ALT 236 - Leviathan - 09 Where the Monsters Live.flac
+9:Hokuto_No_Ken_-_Ai_Wo_Torimodose_Guitar_Cover_HD.mp3
+10:Jstuff/[180207] MYTH & ROID 6th Single - HYDRA [FLAC]/01. HYDRA.flac
+11:Jstuff/[180207] MYTH & ROID 6th Single - HYDRA [FLAC]/02. Stormy Glory.flac
+12:Jstuff/[Album] MONDO GROSSO - Attune  Detune [MP3]/01 One Temperature ft.Big-O.m4a
+13:Jstuff/[Album] MONDO GROSSO - Attune  Detune [MP3]/02 TURN IT UP ft.大橋トリオ.m4a
+14:Jstuff/[Album] MONDO GROSSO - Attune  Detune [MP3]/03 偽りのシンパシー ft.アイナ・ジ・エンド(BiSH).m4a
+15:Jstuff/[Album] MONDO GROSSO - Attune  Detune [MP3]/04 KEMURI ft.ACO (feat. ACO).m4a
+16:Jstuff/[Album] MONDO GROSSO - Attune  Detune [MP3]/05 - Attune _ Detune -.m4a
+17:Jstuff/[Album] MONDO GROSSO - Attune  Detune [MP3]/06 KEMURI (Retune) ft.RHYME.m4a
+18:Jstuff/[Album] MONDO GROSSO - Attune  Detune [MP3]/07 ERASER (FRF07 Rearrangement) ft.二神アンヌ.m4a
+19:Jstuff/[Album] MONDO GROSSO - Attune  Detune [MP3]/08 ラビリンス  (Thousand Tears Orchestra Instrumental).m4a
+20:Jstuff/[Album] MONDO GROSSO - Attune  Detune [MP3]/MONDO GROSSO   ラビリンス.mp3
+21:Jstuff/[Album] MONDO GROSSO - Attune  Detune [MP3]/09 惑星タントラ.m4a
+22:Jstuff/[Sheldonsuckz] Frederic - Kanashii Ureshii [FLAC]/01 Kanashii Ureshii.flac
+23:Jstuff/[Sheldonsuckz] Frederic - Kanashii Ureshii [FLAC]/02 Sync Rock.flac
+24:Jstuff/[Sheldonsuckz] Frederic - Kanashii Ureshii [FLAC]/03 Machigai sa ga shi no Kuni.flac
+25:Jstuff/[Sheldonsuckz] Frederic - Kanashii Ureshii [FLAC]/04 Touge no Yuurei (Live at Shinkiba STUDIO COAST).flac
+26:Jstuff/[Sheldonsuckz] Frederic - Kanashii Ureshii [FLAC]/05 Makka na Car (Live at Shinkiba STUDIO COAST).flac
+27:Jstuff/[Sheldonsuckz] Frederic - Kanashii Ureshii [FLAC]/06 Night Step (Live at Shinkiba STUDIO COAST).flac
+28:Jstuff/[Sheldonsuckz] Frederic - Kanashii Ureshii [FLAC]/07 CYNICALTURE (Live at Shinkiba STUDIO COAST).flac
+29:Jstuff/[Sheldonsuckz] Frederic - Kanashii Ureshii [FLAC]/08 Disco Pool (Live at Shinkiba STUDIO COAST).flac
+30:AnimeOPED/[Sheldonsuckz] Haruka to Miyuki - 17-sai [FLAC]/01 17-sai.flac
+31:Bordel/[Shin-S]  Kekkai Sensen OP Single - Hello, world! (FLAC) [BUMP OF CHICKEN].zip/Kekkai Sensen OP Single - Hello, world!/01 - Hello, world!.flac
+32:Bordel/[Shin-S]  Kekkai Sensen OP Single - Hello, world! (FLAC) [BUMP OF CHICKEN].zip/Kekkai Sensen OP Single - Hello, world!/02 - Colony.flac
+33:Jstuff/2017 MIYAVI - Samurai Sessions Vol.2 flac/01 Dancing With My Fingers.flac
+34:Jstuff/2017 MIYAVI - Samurai Sessions Vol.2 flac/02 Gemstone.flac
+35:Jstuff/2017 MIYAVI - Samurai Sessions Vol.2 flac/03 Fight Club.flac
+36:Jstuff/2017 MIYAVI - Samurai Sessions Vol.2 flac/04 Banzai Song.flac
+37:Jstuff/2017 MIYAVI - Samurai Sessions Vol.2 flac/05 Bumps In The Night.flac
+38:Jstuff/2017 MIYAVI - Samurai Sessions Vol.2 flac/06 No Thanks Ya.flac
+39:Jstuff/2017 MIYAVI - Samurai Sessions Vol.2 flac/07 Flashback.flac
+40:Jstuff/2017 MIYAVI - Samurai Sessions Vol.2 flac/08 All My Life.flac
+41:Jstuff/2017 MIYAVI - Samurai Sessions Vol.2 flac/09 Forget You.flac
+42:Jstuff/2017 MIYAVI - Samurai Sessions Vol.2 flac/10 Slap It.flac
+43:Jstuff/2017 MIYAVI - Samurai Sessions Vol.2 flac/11 Long Nights (feat. Sonita).flac
+44:Jstuff/[Album] MONDO GROSSO - Attune  Detune [MP3]/09 惑星タントラ.m4a
+45:AnimeOPED/OVERLORD III OST [OP] VORACITY by MYTH & ROID [2018] [Single] [Hi-RES]/01 - VORACITY.flac
+46:AnimeOPED/OVERLORD III OST [OP] VORACITY by MYTH & ROID [2018] [Single] [Hi-RES]/02 - Something wo Sunrise.flac
+47:AnimeOPED/[180418] VICKEBLANKA 1st Single - ULALA [FLAC]/03. Black Rover.flac
+48:AnimeOPED/black.clover/[Sheldonsuckz] BiSH - PAiNT it BLACK [Hi-RES]/01 PAiNT it BLACK.flac
+49:Jstuff/[ASL]_TK_from_Ling_tosite_sigure_-_Tokyo_Ghoul_OP_-_unravel_[FLAC]_[w_Scans]/[ASL] TK from Ling tosite sigure - Tokyo Ghoul OP - unravel [FLAC] [w Scans]/01 unravel.flac
+50:Jstuff/[Audio-4U] きゃりーぱみゅぱみゅ — Kyary Pamyu Pamyu 1.0 (flac)/Singles/[2012.04.04] CANDY CANDY/01. きゃりーぱみゅぱみゅ — CANDY CANDY.flac
+51:Jstuff/[Audio-4U] きゃりーぱみゅぱみゅ — Kyary Pamyu Pamyu 1.0 (flac)/Albums/[2011.08.17] もしもし原宿/03. きゃりーぱみゅぱみゅ — PONPONPON.flac
+52:Jstuff/[Audio-4U] きゃりーぱみゅぱみゅ — Kyary Pamyu Pamyu 1.0 (flac)/Albums/[2011.08.17] もしもし原宿/06. きゃりーぱみゅぱみゅ — jelly.flac
+53:Jstuff/[Audio-4U] きゃりーぱみゅぱみゅ — Kyary Pamyu Pamyu 1.0 (flac)/Albums/[2011.08.17] もしもし原宿/01. きゃりーぱみゅぱみゅ — きゃりーのマーチ.flac
+54:Jstuff/[Audio-4U] きゃりーぱみゅぱみゅ — Kyary Pamyu Pamyu 1.0 (flac)/Albums/[2011.08.17] もしもし原宿/02. きゃりーぱみゅぱみゅ — チェリーボンボン.flac
+55:Jstuff/[Audio-4U] きゃりーぱみゅぱみゅ — Kyary Pamyu Pamyu 1.0 (flac)/Albums/[2011.08.17] もしもし原宿/04. きゃりーぱみゅぱみゅ — ちょうどいいの.flac
+56:Jstuff/[Audio-4U] きゃりーぱみゅぱみゅ — Kyary Pamyu Pamyu 1.0 (flac)/Albums/[2011.08.17] もしもし原宿/05. きゃりーぱみゅぱみゅ — ピンポンがなんない.flac
+57:Jstuff/[Sheldonsuckz] NakamuraEmi - NIPPONNO ONNAWO UTAU Vol.5 [FLAC]/01 Don't (Album Mix).flac
+58:Jstuff/[Sheldonsuckz] NakamuraEmi - NIPPONNO ONNAWO UTAU Vol.5 [FLAC]/02 N.flac
+59:Jstuff/[Sheldonsuckz] NakamuraEmi - NIPPONNO ONNAWO UTAU Vol.5 [FLAC]/03 Kakattekoiyo.flac
+60:Jstuff/[Sheldonsuckz] NakamuraEmi - NIPPONNO ONNAWO UTAU Vol.5 [FLAC]/04 Shinbun.flac
+61:Jstuff/[Sheldonsuckz] NakamuraEmi - NIPPONNO ONNAWO UTAU Vol.5 [FLAC]/05 Nami Wo Matsunosa.flac
+62:Jstuff/[Sheldonsuckz] NakamuraEmi - NIPPONNO ONNAWO UTAU Vol.5 [FLAC]/06 Hoshi Nante Iwazu.flac
+63:Jstuff/[Sheldonsuckz] NakamuraEmi - NIPPONNO ONNAWO UTAU Vol.5 [FLAC]/07 Kyoshitsu.flac
+64:Jstuff/[Sheldonsuckz] NakamuraEmi - NIPPONNO ONNAWO UTAU Vol.5 [FLAC]/08 Motivation.flac
+65:Jstuff/Jijitsu Jou/01. 幽居のワルツ.flac
+66:Jstuff/Jijitsu Jou/02. サイサキ.flac
+67:Jstuff/Jijitsu Jou/03. 激白.flac
+68:Jstuff/Jijitsu Jou/04. 十中八九.flac
+69:Jstuff/Jijitsu Jou/05. 煩悩遊戯.flac
+70:Jstuff/Jijitsu Jou/06. -MANDARA FACT-.flac
+71:Jstuff/Jijitsu Jou/07. 真空オールドローズ.flac
+72:Jstuff/Jijitsu Jou/08. ミラージュ.flac
+73:Jstuff/Jijitsu Jou/09. SAIREN.flac
+74:Jstuff/Jijitsu Jou/10. 秋映.flac
+75:Jstuff/Jijitsu Jou/11. medemede -JJJ Remix-.flac
+76:SOUNDTRACK/BERSERK Music Collection (FLAC)/TELL ME WHY/01 - TELL ME WHY.flac
+77:Ghibli/Ghibli Music Collection. Part 1/Collaboration Albums/Relaxing Piano - Hayao Miyazaki Collection/01 - Itsumo Nando demo (Sen to Chihiro no Kamikakushi) .mp3
+78:Ghibli/Ghibli Music Collection. Part 1/Collaboration Albums/Relaxing Piano - Hayao Miyazaki Collection/02 - Umi no Mieru Machi (Majo no Takkyubin) .mp3
+79:Ghibli/Ghibli Music Collection. Part 1/Collaboration Albums/Relaxing Piano - Hayao Miyazaki Collection/03 - Mononoke Hime (Mononoke Hime) .mp3
+80:Ghibli/Ghibli Music Collection. Part 1/Collaboration Albums/Relaxing Piano - Hayao Miyazaki Collection/04 - Kaze no Toori Machi (Tonari no Totoro) .mp3
+81:Ghibli/Ghibli Music Collection. Part 1/Collaboration Albums/Relaxing Piano - Hayao Miyazaki Collection/05 - Ji no wa Mukashi wo Hanashi wo (Kurenai no Buta) .mp3
+82:Ghibli/Ghibli Music Collection. Part 1/Collaboration Albums/Relaxing Piano - Hayao Miyazaki Collection/06 - Yasashisa ni Tsutsumareta nara (Majo no Takkyubin) .mp3
+83:Ghibli/Ghibli Music Collection. Part 1/Collaboration Albums/Relaxing Piano - Hayao Miyazaki Collection/07 - Tonari no Totoro (Tonare no Totoro) .mp3
+84:Ghibli/Ghibli Music Collection. Part 1/Collaboration Albums/Relaxing Piano - Hayao Miyazaki Collection/08 - Kaze no Tani no Nausica (Kaze no Tani no Nausica) .mp3
+85:Ghibli/Ghibli Music Collection. Part 1/Collaboration Albums/Relaxing Piano - Hayao Miyazaki Collection/09 - Kimi wo Nosete (Tenkuu no Shiro Laputa) .mp3
+86:Ghibli/Ghibli Music Collection. Part 1/Collaboration Albums/Relaxing Piano - Hayao Miyazaki Collection/10 - Inochi no Namae (Sen to Chihiro no Kamikakushi) .mp3
+playlist_end
