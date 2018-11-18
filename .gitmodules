@@ -2,5 +2,5 @@
 	path = emacs/.emacs.d
 	url = https://github.com/Gueckmooh/.emacs.d.git
 [submodule "awesome/yet-another-awesome-config"]
-	path = awesome/yet-another-awesome-config
+	path = awesome/.config/awesome
 	url = https://github.com/Gueckmooh/yet-another-awesome-config.git
