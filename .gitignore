@@ -4,3 +4,5 @@ mpd/.config/mpd/state
 mpd/.config/mpd/tag_cache
 mpd/.config/mpd/pid
 mpd/.config/mpd/sticker.sql
+
+ncmpcpp/.config/error.log
