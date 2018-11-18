@@ -1,0 +1,184 @@
+############################## MAKEFILE ##############################
+#          Author : Enzo Brignon                                     #
+######################################################################
+
+-include config.mk
+.SECONDEXPANSION:
+
+QUIET=@
+CC = $(TARGET)gcc
+CXX = $(TARGET)g++
+AS = $(TARGET)as
+AR = ar
+
+ifneq (`find -regex '.*\.\(cc\|C\|cpp\)`, "")
+LD := $(TARGET)g++
+else
+LD := $(TARGET)gcc
+endif
+
+LEX = flex
+YACC = bison
+
+MKDIR := $(QUIET)mkdir -p
+CD := $(QUIET)cd
+ECHO := $(QUIET)echo
+RM := $(QUIET)rm -rf
+
+SRCDIR ?= src/
+
+DEPDIR ?= .deps
+INCDIR ?= include
+OBJDIR ?= .objs
+
+CURDIR := $(notdir $(shell pwd))
+EXEC ?= $(CURDIR)
+STATIC := lib$(EXEC).a
+DYNAMIC := lib$(CURDIR).so
+
+FFILES = $(wildcard $(SRCDIR)/*.l)
+BFILES = $(wildcard $(SRCDIR)/*.y)
+
+LPFILES = $(addsuffix .c, $(basename $(BFILES)))
+LPFILES += $(addsuffix .c, $(basename $(FFILES)))
+
+CEXT = c
+CXXEXT = cc cpp C
+ASMEXT = s S
+
+ALLEXT = $(CEXT) $(CXXEXT) $(ASMEXT)
+
+SRC = $(foreach VAR, $(ALLEXT), $(wildcard $(addsuffix *.$(VAR), $(SRCDIR))))
+
+OBJ := $(foreach EXT, $(ALLEXT), $(patsubst %.$(EXT), %.o, \
+                                  $(notdir $(filter %.$(EXT), $(SRC)))))
+
+FLAGS += -Wall
+FLAGS += $(DBGFLAGS)
+
+OPT += -gdwarf-2
+OPT += -D__DEBUG
+
+OPTLEVEL ?= -O2
+DBGOPT ?= -Og
+
+DBGFLAGS := $(OPTLEVEL)
+
+CCMESSAGE=@echo "\t CC \t\t $(notdir $@)"
+CXXMESSAGE=@echo "\t CXX \t\t $(notdir $@)"
+ASMESSAGE=@echo "\t AS \t\t $(notdir $@)"
+LDMESSAGE=@echo "\t LD \t $@"
+ARMESSAGE=@echo "\t AR \t $@"
+
+CFLAGS += $(FLAGS)
+CFLAGS += -std=gnu99
+
+CXXFLAGS += $(FLAGS)
+CXXFLAGS += -std=c++11
+
+NOINC = clean, mrproper
+.PHONY: all clean mrproper static
+
+.DEFAULT_GOAL = all
+
+all: $(EXEC)
+
+debug: DBGFLAGS = $(DBGOPT) $(DBG)
+debug: all
+
+$(EXEC): $(addprefix $(OBJDIR)/, $(OBJ))
+	$(QUIET)$(LD) -o $@ $^ $(LDFLAGS)
+	$(LDMESSAGE)
+
+static: $(STATIC)
+
+$(STATIC): $(addprefix $(OBJDIR)/, $(OBJ))
+	$(QUIET)$(AR) rcs $@ $^
+	$(ARMESSAGE)
+
+dynamic: FLAGS += -fPIC
+dynamic: $(DYNAMIC)
+
+$(DYNAMIC): $(addprefix $(OBJDIR)/, $(OBJ))
+	$(QUIET)$(LD) -shared -o $@ $^ $(LDFLAGS)
+	$(LDMESSAGE)
+
+$(addprefix $(OBJDIR)/, $(OBJ)): $(OBJDIR)/%.o: $(DEPDIR)/%.d
+
+%.c: %.l
+	$(LEX) -o $@ $<
+
+%.c: %.y
+	$(YACC) -o $@ --defines=$(basename $<).h $<
+
+
+$(DEPDIR)/%.d: $(call FILTER_OUT, %.c, $(SRC)) $$(@D)/.f
+	@echo $(foreach VAR, $(SRCDIR), $(filter $(SRC), $(VAR)%.c))
+	$(QUIET)$(CC) $(CFLAGS) -MM -MT '$(OBJDIR)/$(notdir $(@:.d=.o))' \
+                                                            $< -o $@ $(INCFLAGS)
+
+$(DEPDIR)/%.d: $(filter $(addsuffix %.s, $(SRCDIR)), $(SRC)) $$(@D)/.f
+	$(QUIET)$(CC) $(CFLAGS) -MM -MT '$(OBJDIR)/$(notdir $(@:.d=.o))' \
+                                                            $< -o $@ $(INCFLAGS)
+
+$(DEPDIR)/%.d: $(filter $(addsuffix %.S, $(SRCDIR)), $(SRC)) $$(@D)/.f
+	$(QUIET)$(CC) $(CFLAGS) -MM -MT '$(OBJDIR)/$(notdir $(@:.d=.o))' \
+                                                            $< -o $@ $(INCFLAGS)
+
+$(DEPDIR)/%.d: $(filter $(addsuffix %.cc, $(SRCDIR)), $(SRC)) $$(@D)/.f
+	$(QUIET)$(CXX) $(CXXFLAGS) -MM -MT '$(OBJDIR)/$(notdir $(@:.d=.o))' \
+                                                            $< -o $@ $(INCFLAGS)
+
+$(DEPDIR)/%.d: $(filter $(addsuffix %.C, $(SRCDIR)), $(SRC)) $$(@D)/.f
+	$(QUIET)$(CXX) $(CXXFLAGS) -MM -MT '$(OBJDIR)/$(notdir $(@:.d=.o))' \
+                                                            $< -o $@ $(INCFLAGS)
+
+$(DEPDIR)/%.d: $(filter $(addsuffix %.cpp, $(SRCDIR)), $(SRC)) $$(@D)/.f
+	$(QUIET)$(CXX) $(CXXFLAGS) -MM -MT '$(OBJDIR)/$(notdir $(@:.d=.o))' \
+                                                            $< -o $@ $(INCFLAGS)
+
+
+ifneq ($(MAKECMDGOALS),$(NOINC))
+-include $(addprefix $(DEPDIR)/, $(foreach EXT, $(ALLEXT),$(patsubst %.$(EXT),\
+                                     %.d,$(filter %.$(EXT), $(notdir $(SRC))))))
+endif
+
+$(OBJDIR)/%.o: $(SRCDIR)/%.c $(DEPDIR)/%.d $$(@D)/.f
+	$(QUIET)$(CC) $(CFLAGS) -c -o $@ $< $(INCFLAGS)
+	$(CCMESSAGE)
+
+$(OBJDIR)/%.o: $(SRCDIR)/%.cpp $(DEPDIR)/%.d $$(@D)/.f
+	$(QUIET)$(CXX) $(CXXFLAGS) -c -o $@ $< $(INCFLAGS)
+	$(CXXMESSAGE)
+
+$(OBJDIR)/%.o: $(SRCDIR)/%.cc $(DEPDIR)/%.d $$(@D)/.f
+	$(QUIET)$(CXX) $(CXXFLAGS) -c -o $@ $< $(INCFLAGS)
+	$(CXXMESSAGE)
+
+$(OBJDIR)/%.o: $(SRCDIR)/%.C $(DEPDIR)/%.d $$(@D)/.f
+	$(QUIET)$(CXX) $(CXXFLAGS) -c -o $@ $< $(INCFLAGS)
+	$(CXXMESSAGE)
+
+$(OBJDIR)/%.o: $(SRCDIR)/%.s $(DEPDIR)/%.d $$(@D)/.f
+	$(QUIET)$(AS) -o $@ $<
+	$(ASMESSAGE)
+
+$(OBJDIR)/%.o: $(SRCDIR)/%.S $(DEPDIR)/%.d $$(@D)/.f
+	$(QUIET)$(AS) -o $@ $<
+	$(ASMESSAGE)
+
+%/.f:
+	$(QUIET)mkdir -p $(dir $@)
+	$(QUIET)touch $@
+
+.PRECIOUS: %/.f
+
+clean:
+	$(RM) $(OBJDIR)
+	$(RM) $(DEPDIR)
+
+mrproper: clean
+	$(RM) $(STATIC)
+	$(RM) $(DYNAMIC)
+	$(RM) $(EXEC)
+	$(QUIET) $(RM) $(LPFILES)

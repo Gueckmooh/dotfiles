@@ -123,7 +123,7 @@ fi
 
 export PATH=$PATH::/usr/local/netbeans-8.2/bin
 export PATH=$PATH:/opt/i3lock-fancy
-export PATH=$PATH:$HOME/bin
+export PATH=$PATH:$HOME/.bin
 export PATH=$PATH:/home/brignone/.cargo/bin/
 export GIT_SSH_COMMAND="ssh -i $HOME/.ssh/id_rsa -lgit"
 export XDG_CONFIG_HOME=/home/brignone/.config
