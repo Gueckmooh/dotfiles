@@ -1,7 +1,0 @@
-# -*- mode: snippet -*-
-# name: listing
-# key: lst
-# --
-\begin{lstlisting}[style=${1:style},label=lst:${2:label},caption=nextHopInfo: ${3:caption}]
-$0
-\end{lstlisting}
