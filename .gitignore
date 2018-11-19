@@ -5,4 +5,7 @@ mpd/.config/mpd/tag_cache
 mpd/.config/mpd/pid
 mpd/.config/mpd/sticker.sql
 
-ncmpcpp/.config/error.log
+ncmpcpp/.config/ncmpcpp/error.log
+
+ranger/.config/ranger/bookmarks
+ranger/.config/ranger/history
