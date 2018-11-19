@@ -4,3 +4,6 @@
 [submodule "awesome/.config/awesome"]
 	path = awesome/.config/awesome
 	url = https://github.com/Gueckmooh/yet-another-awesome-config.git
+[submodule "bin/sources/backlight"]
+	path = bin/sources/backlight
+	url = https://github.com/Gueckmooh/backlight.git
