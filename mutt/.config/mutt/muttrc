@@ -1,0 +1,15 @@
+####### CONFIGURATION MUTT
+# Créé le: 2018-11-19
+# Dernière modification le: ** 2018-11-19
+
+set from = "enzo.brignon@univ-grenoble-alpes.fr"
+set realname = "Enzo Brignon"
+set use_from = yes
+set reverse_name
+# set signature=~/.signature
+
+set spoolfile = /var/spool/mail/$USER
+set folder    = ~/Mail
+set tmpdir    = ~/tmp
+
+set editor = 'emacsclient -nw'

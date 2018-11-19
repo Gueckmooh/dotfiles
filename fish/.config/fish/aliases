@@ -1,0 +1,36 @@
+## ls aliases
+alias ls='ls --color=auto'
+alias l='ls -CF'
+alias ll='ls -CFlh'
+alias la='ls -ACF'
+# alias wl='echo $(($(ls -l | wc -l)-1))'
+alias sl='sl -e'
+alias LS='LS -e'
+alias -- -='cd -'
+
+## emacs aliases
+alias ma='emacs -nw'
+
+## grep aliases
+alias egrep='egrep --color=auto'
+alias fgrep='fgrep --color=auto'
+alias grep='grep --color=auto'
+
+## gcc aliases
+alias arm_ld='arm_none_eabi_ld -r -o'
+
+## misc
+alias c='caja . &'
+alias redshift0='redshift -m randr:crtc=0 &'
+alias yt-dl='youtube-dl --extract-audio --audio-format mp3 -o "%(title)s.%(ext)s"'
+alias ntab='firefox --new-tab'
+alias awkin='gawk -i inplace -v INPLACE_SUFFIX=.bak'
+alias mpv='mpv --save-position-on-quit'
+alias clipboard='xclip -selection clipboard'
+alias lock='i3lock-fancy -f Courier -p -t Locked'
+alias piper='PYTHONPATH=:/usr/lib/python3.5/site-packages piper'
+alias icat='kitty +kitten icat'
+alias cdscreen='[[ -d ~/Images/screenshots/$(date +%F)-screenshots ]] && cd ~/Images/screenshots/$(date +%F)-screenshots || echo "No screenshots taken today"'
+alias mpc='mpc -p 6601'
+alias b='ranger'
+alias xb='uxterm -e "source ~/.bash_profile && ranger"'

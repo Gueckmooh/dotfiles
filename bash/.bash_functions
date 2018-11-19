@@ -11,17 +11,17 @@ function lb {
 function e {
     if [[ "$#" != 0 ]]
     then
-        emacsclient -c $*
+        emacsclient --alternate-editor 'vim' -c $*
     else
-        emacsclient -c .
+        emacsclient --alternate-editor 'vim' -c .
     fi
 }
 
 function macl {
     if [[ "$#" != 0 ]]
     then
-        emacsclient -nw $*
+        emacsclient --alternate-editor 'vim' -nw $*
     else
-        emacsclient -nw .
+        emacsclient --alternate-editor 'vim' -nw .
     fi
 }
