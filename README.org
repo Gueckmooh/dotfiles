@@ -3,7 +3,7 @@
 #+OPTIONS: d:(not "LOGBOOK") date:t e:t email:nil f:t inline:t num:t
 #+OPTIONS: p:nil pri:nil prop:nil stat:t tags:t tasks:t tex:t
 #+OPTIONS: timestamp:t title:t toc:t todo:t |:t
-#+TITLE: README
+#+TITLE: ~/.*
 #+DATE: <2018-11-18 dim.>
 #+AUTHOR: Enzo Brignon
 #+EMAIL: brignone@nia.lan
