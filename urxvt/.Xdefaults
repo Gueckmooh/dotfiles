@@ -1,0 +1,92 @@
+! URxvt.background: rgba:5555/5555/5555/aaaa
+
+URxvt.font: xft:Monospace-12
+URxvt.perl-ext-common:  default,matcher
+URxvt.url-launcher:     firefox
+URxvt.matcher.button:   3
+URxvt.secondaryScreen: 1
+URxvt.secondaryScroll: 0
+URxvt.secondaryWheel: 1
+URxvt.cursorColor: rgb:cc/cc/cc
+URxvt*foreground: rgb:ff/ff/f
+! URxvt.shading: 60
+! URxvt.background: #232729
+! URxvt.transparent: true
+urxvt*depth: 32
+URxvt.background: rgba:2300/2700/2900/a800
+URxvt.scrollBar:  false
+urxvt.colorBD:           #ffffff
+urxvt.colorIT:           #bbbbbb
+urxvt.colorUL:           #999999
+urxvt.underlineColor:    #999999
+URxvt*letterSpace: -1
+
+! Rebind Ctrl + Shift + C/V
+URxvt.keysym.Shift-Control-V: eval:paste_clipboard
+URxvt.keysym.Shift-Control-C: eval:selection_to_clipboard
+
+! Removing anoying iso blablabla
+URxvt.iso14755: false
+URxvt.iso14755_52: false
+
+! URxvt*color0: #000000
+! URxvt.color12: rgb:5c/5c/ff
+! *color0:  #2E3436
+! *color1:  #a40000
+! *color2:  #4E9A06
+! *color3:  #C4A000
+! *color4:  #3465A4
+! *color5:  #75507B
+! *color6:  #ce5c00
+! *color7:  #babdb9
+! *color8:  #555753
+! *color9:  #EF2929
+! *color10: #8AE234
+! *color11: #FCE94F
+! *color12: #729FCF
+! *color13: #AD7FA8
+! *color14: #fcaf3e
+! *color15: #EEEEEC
+
+
+URxvt.internalBorder: 7
+! URxvt*background:                     #171717
+! URxvt*foreground:                      #B2B2B2
+!  URxvt*color0:                         #171717
+!  URxvt*color1:                         #3D3D3D
+!  URxvt*color2:                         #ffffff
+
+*color0:  #2E3436
+*color1:  #CC0000
+*color2:  #4E9A06
+*color3:  #C4A000
+*color4:  #3465A4
+*color5:  #75507B
+*color6:  #06989A
+*color7:  #D3D7CF
+*color8:  #555753
+*color9:  #EF2929
+*color10:  #8AE234
+*color11:  #FCE94F
+*color12:  #729FCF
+*color13:  #AD7FA8
+*color14:  #34E2E2
+*color15:  #EEEEEC
+
+xterm.cursorColor: rgb:cc/cc/cc
+xterm*foreground: rgb:ff/ff/f
+xterm*background: #232729
+xterm.scrollBar:  false
+! xterm*font: xft:Monospace-12
+xterm*renderFont: true
+xterm*faceName: Monospace
+xterm*faceSize: 11
+xterm*letterSpace: -1
+xterm*utf8: 2
+
+XTerm*eightBitInput:   false
+XTerm*eightBitOutput:  true
+
+XTerm.VT100.EightBitInput: false
+
+XTerm.VT100.Translations: #override Meta<KeyPress>: string(0x1b) insert()
