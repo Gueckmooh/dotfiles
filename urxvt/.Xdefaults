@@ -1,4 +1,5 @@
 ! URxvt.background: rgba:5555/5555/5555/aaaa
+! see https://superuser.com/questions/1247281/how-to-configure-rxvt-unicode-to-behave-similar-to-gnome-terminal-or-others-f
 
 URxvt.font: xft:Monospace-12
 URxvt.perl-ext-common:  default,matcher,selection-to-clipboard,font-size
@@ -42,6 +43,18 @@ URxvt.keysym.C-KP_0: font-size:reset
 URxvt.scrollTtyOutput:      false
 URxvt.scrollWithBuffer:     true
 URxvt.scrollTtyKeypress:    true
+
+URxvt.keysym.Home: \033[H
+URxvt.keysym.End:  \033[F
+
+! match vte/xterm
+URxvt.keysym.Control-Up:    \033[1;5A
+URxvt.keysym.Control-Down:  \033[1;5B
+URxvt.keysym.Control-Left:  \033[1;5D
+URxvt.keysym.Control-Right: \033[1;5C
+
+! clear the scrollback
+URxvt.keysym.Control-l: command:\033c
 
 
 ! URxvt*color0: #000000
