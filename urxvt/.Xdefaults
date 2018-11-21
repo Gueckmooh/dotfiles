@@ -54,7 +54,7 @@ URxvt.keysym.Control-Left:  \033[1;5D
 URxvt.keysym.Control-Right: \033[1;5C
 
 ! clear the scrollback
-URxvt.keysym.Control-l: command:\033c
+! URxvt.keysym.Control-l: command:\033c
 
 
 ! URxvt*color0: #000000
