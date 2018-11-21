@@ -176,8 +176,9 @@ export EDITOR="emacsclient -nw"
 
 if [[ ! -z $DISPLAY ]]
 then
-    echo Welcome ! | toilet | lolcat
-    fortune 2> /dev/null | cowsay -f /usr/share/cowsay/cows/totoro.cow | lolcat
+    # echo Welcome ! | toilet | lolcat
+    echo Welcome ! | figlet | lolcat
+    fortune -s 2> /dev/null | cowsay -f $HOME/.config/cows/totoro.cow | lolcat
 fi
 
 export XDG_USER_CONFIG_DIR=$HOME/.config

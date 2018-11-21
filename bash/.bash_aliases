@@ -46,5 +46,5 @@ alias mpc='mpc -p 6601'
 alias b='ranger'
 alias xb='uxterm -e "source ~/.bash_profile && ranger"'
 
-alias dcrypt='encfs -i 5 ~/.crypt ~/crypt && cd ~/crypt'
-alias look_away='cd && fusermount -u ~/crypt'
+alias dcrypt='mkdir -p ~/crypt && encfs -i 5 ~/.crypt ~/crypt && cd ~/crypt'
+alias look_away='cd && fusermount -u ~/crypt && rmdir ~/crypt'
