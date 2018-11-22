@@ -1,0 +1,7 @@
+application/pdf; zathura %s
+
+image/jpg; feh %s jpg
+image/jpeg; feh %s jpg
+image/pjpeg; feh %s jpg
+image/png; feh %s png
+image/gif; feh %s gif
