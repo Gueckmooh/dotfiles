@@ -1,0 +1,19 @@
+#!/bin/bash
+
+image=$(mktemp --suffix=.png)
+shot=(scrot)
+lockcmd=(i3lock -i "$image")
+pixelate=(-scale 10% -scale 1000%)
+hue=(-level 0%,100%,1)
+
+"${shot[@]}" "$image"
+convert "$image" "${hue[@]}" "${pixelate[@]}" "$image"
+
+# convert /tmp/tmp.dBb9zaCmYh.png -level 0%,100%,0.6 -filter Gaussian -resize 20% -define filter:sigma=1.5 -resize 500.5% -font DejaVu-Sans -pointsize 26 -fill white -gravity center -annotate +0+160 Entrez votre mot de passe /usr/share/i3lock-fancy/icons/lock.png -gravity center -composite /tmp/tmp.dBb9zaCmYh.png
+
+# convert /tmp/tmp.ecPqTFsjAu.png -level 0%,100%,0.6 -scale 10% -scale 1000% -font DejaVu-Sans -pointsize 26 -fill white -gravity center -annotate +0+160 Entrez votre mot de passe /usr/share/i3lock-fancy/icons/lock.png -gravity center -composite /tmp/tmp.ecPqTFsjAu.png
+
+# feh "$image"
+i3lock -eui "$image"
+
+trap 'rm -f "$image"' EXIT
