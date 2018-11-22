@@ -177,7 +177,7 @@ export EDITOR="emacsclient -nw"
 if [[ ! -z $DISPLAY ]]
 then
     # echo Welcome ! | toilet | lolcat
-    echo Welcome ! | figlet | lolcat
+    echo Welcome ! | $HOME/bin/random-figlet | lolcat
     fortune -s 2> /dev/null | cowsay -f $HOME/.config/cows/totoro.cow | lolcat
 fi
 

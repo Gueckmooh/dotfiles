@@ -1,7 +1,8 @@
 application/pdf; zathura %s
 
-image/jpg; feh %s jpg
-image/jpeg; feh %s jpg
-image/pjpeg; feh %s jpg
-image/png; feh %s png
-image/gif; feh %s gif
+image/jpg; feh %s
+image/jpeg; feh %s
+image/pjpeg; feh %s
+image/png; feh %s
+# image/gif; feh %s gif
+image/gif; firefox --new-tab %s

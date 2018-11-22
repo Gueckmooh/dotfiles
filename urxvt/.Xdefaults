@@ -124,4 +124,4 @@ XTerm.VT100.Translations: #override Meta<KeyPress>: string(0x1b) insert()
 
 ! For the dropdown terminal
 QuakeDD*depth: 32
-QuakeDD.background: rgba:2300/2700/2900/a800
+QuakeDD.background: rgba:2300/2700/2900/e800
