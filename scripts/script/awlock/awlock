@@ -10,6 +10,12 @@ lockcmd=(i3lock -i "$image")
 pixelate=(-scale 10% -scale 1000%)
 hue=(-level 0%,100%,1)
 
+pretty=(--insidecolor=373445ff --ringcolor=ffffffff --line-uses-inside
+    --keyhlcolor=d23c3dff --bshlcolor=d23c3dff --separatorcolor=00000000
+    --insidevercolor=fecf4dff --insidewrongcolor=d23c3dff
+    --ringvercolor=ffffffff --ringwrongcolor=ffffffff --indpos="x+86:y+1003"
+    --radius=15 --veriftext="" --wrongtext="" --noinputtext="")
+
 trap 'rm -f "$image"' EXIT
 trap revert SIGHUP SIGINT SIGTERM
 
@@ -38,5 +44,5 @@ convert "$image" "${hue[@]}" "${pixelate[@]}" "${addimg[@]}" "$image"
 # feh "$image"
 [[ "$#" -ge 1 && "$1" == '-s' ]] || xset +dpms dpms 5 5 5
 [[ "$#" -ge 1 && "$1" == '-s' ]] && (sleep 2; systemctl suspend) &
-i3lock -neui "$image"
+i3lock -nei "$image" "${pretty[@]}" 2> /dev/null || i3lock -neui "$image"
 revert
