@@ -1,10 +1,17 @@
 #!/bin/bash
 
+revert() {
+    xset dpms 0 0 0
+}
+
 image=$(mktemp --suffix=.png)
 shot=(scrot)
 lockcmd=(i3lock -i "$image")
 pixelate=(-scale 10% -scale 1000%)
 hue=(-level 0%,100%,1)
+
+trap 'rm -f "$image"' EXIT
+trap revert SIGHUP SIGINT SIGTERM
 
 "${shot[@]}" "$image"
 
@@ -24,11 +31,12 @@ else
     icon="$HOME/script/awlock/icon/LOCK.png"
 fi
 
-addimg=(-font FreeMono-Gras -pointsize 26 -fill white -gravity center -annotate +0+100 "Password please" "$icon" -gravity center -composite)
+addimg=(-font FreeMono-Gras -pointsize 26 -fill "$bw" -gravity center -annotate +0+100 "Password please" "$icon" -gravity center -composite)
 
 convert "$image" "${hue[@]}" "${pixelate[@]}" "${addimg[@]}" "$image"
 
 # feh "$image"
-i3lock -eui "$image"
-
-trap 'rm -f "$image"' EXIT
+[[ "$#" -ge 1 && "$1" == '-s' ]] || xset +dpms dpms 5 5 5
+[[ "$#" -ge 1 && "$1" == '-s' ]] && (sleep 2; systemctl suspend) &
+i3lock -neui "$image"
+revert
