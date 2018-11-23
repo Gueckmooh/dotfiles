@@ -7,11 +7,26 @@ pixelate=(-scale 10% -scale 1000%)
 hue=(-level 0%,100%,1)
 
 "${shot[@]}" "$image"
-convert "$image" "${hue[@]}" "${pixelate[@]}" "$image"
 
 # convert /tmp/tmp.dBb9zaCmYh.png -level 0%,100%,0.6 -filter Gaussian -resize 20% -define filter:sigma=1.5 -resize 500.5% -font DejaVu-Sans -pointsize 26 -fill white -gravity center -annotate +0+160 Entrez votre mot de passe /usr/share/i3lock-fancy/icons/lock.png -gravity center -composite /tmp/tmp.dBb9zaCmYh.png
 
 # convert /tmp/tmp.ecPqTFsjAu.png -level 0%,100%,0.6 -scale 10% -scale 1000% -font DejaVu-Sans -pointsize 26 -fill white -gravity center -annotate +0+160 Entrez votre mot de passe /usr/share/i3lock-fancy/icons/lock.png -gravity center -composite /tmp/tmp.ecPqTFsjAu.png
+
+color=$(convert "$image" -gravity center -crop 100x100+0+0 +repage -colorspace hsb \
+                -resize 1x1 txt:- | awk -F '[%$]' 'NR==2{gsub(",",""); printf "%.0f\n", $(NF-1)}');
+value="60"
+
+if [[ $color -gt $value ]]; then #white background image and black text
+    bw="black"
+    icon="$HOME/script/awlock/icon/LOCK_DARK.png"
+else
+    bw="white"
+    icon="$HOME/script/awlock/icon/LOCK.png"
+fi
+
+addimg=(-font FreeMono-Gras -pointsize 26 -fill white -gravity center -annotate +0+100 "Password please" "$icon" -gravity center -composite)
+
+convert "$image" "${hue[@]}" "${pixelate[@]}" "${addimg[@]}" "$image"
 
 # feh "$image"
 i3lock -eui "$image"
