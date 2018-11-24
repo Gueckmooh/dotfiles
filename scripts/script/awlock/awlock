@@ -10,20 +10,10 @@ lockcmd=(i3lock -i "$image")
 pixelate=(-scale 10% -scale 1000%)
 hue=(-level 0%,100%,1)
 
-pretty=(--insidecolor=373445ff --ringcolor=ffffffff --line-uses-inside
-    --keyhlcolor=d23c3dff --bshlcolor=d23c3dff --separatorcolor=00000000
-    --insidevercolor=fecf4dff --insidewrongcolor=d23c3dff
-    --ringvercolor=ffffffff --ringwrongcolor=ffffffff --indpos="x+86:y+1003"
-    --radius=15 --veriftext="" --wrongtext="" --noinputtext="")
-
 trap 'rm -f "$image"' EXIT
 trap revert SIGHUP SIGINT SIGTERM
 
 "${shot[@]}" "$image"
-
-# convert /tmp/tmp.dBb9zaCmYh.png -level 0%,100%,0.6 -filter Gaussian -resize 20% -define filter:sigma=1.5 -resize 500.5% -font DejaVu-Sans -pointsize 26 -fill white -gravity center -annotate +0+160 Entrez votre mot de passe /usr/share/i3lock-fancy/icons/lock.png -gravity center -composite /tmp/tmp.dBb9zaCmYh.png
-
-# convert /tmp/tmp.ecPqTFsjAu.png -level 0%,100%,0.6 -scale 10% -scale 1000% -font DejaVu-Sans -pointsize 26 -fill white -gravity center -annotate +0+160 Entrez votre mot de passe /usr/share/i3lock-fancy/icons/lock.png -gravity center -composite /tmp/tmp.ecPqTFsjAu.png
 
 color=$(convert "$image" -gravity center -crop 100x100+0+0 +repage -colorspace hsb \
                 -resize 1x1 txt:- | awk -F '[%$]' 'NR==2{gsub(",",""); printf "%.0f\n", $(NF-1)}');
@@ -31,18 +21,56 @@ value="60"
 
 if [[ $color -gt $value ]]; then #white background image and black text
     bw="black"
+    txtcolor=333333ff
+    ringcolor=333333ff
+    insidecolor=abababff
     icon="$HOME/script/awlock/icon/LOCK_DARK.png"
 else
     bw="white"
+    txtcolor=ffffffff
+    ringcolor=ffffffff
+    insidecolor=373445ff
     icon="$HOME/script/awlock/icon/LOCK.png"
 fi
 
+pretty=(--insidecolor="$insidecolor" --ringcolor="$ringcolor" --line-uses-inside
+    --keyhlcolor=d23c3dff --bshlcolor=d23c3dff --separatorcolor=00000000
+    --insidevercolor=fecf4dff --insidewrongcolor=d23c3dff
+    --ringvercolor=ffffffff --ringwrongcolor=ffffffff --indpos="x+86:h-80"
+    --radius=20 --ring-width=4 --veriftext="" --wrongtext="" --noinputtext=""
+    --clock --timepos='x+200:h-80' --timecolor="$txtcolor"
+    --datecolor="$txtcolor" --force-clock)
+
 addimg=(-font FreeMono-Gras -pointsize 26 -fill "$bw" -gravity center -annotate +0+100 "Password please" "$icon" -gravity center -composite)
 
-convert "$image" "${hue[@]}" "${pixelate[@]}" "${addimg[@]}" "$image"
+transform () {
+    screens=$1
+    for scr in $screens
+    do
+        croped=$(mktemp --suffix=.png)
+        decl=$(echo "$scr" | sed 's/[0-9]*x[0-9]*//')
+        convert "$image" -crop "$scr" -scale 10% -scale 1000% "$croped"
+        composite -compose Over -gravity Center "$icon" "$croped" "$croped"
+        composite -compose Over -geometry "$decl" -gravity NorthWest "$croped" \
+                  "$image" "$image"
+        rm -f "$croped"
+    done
+}
+
+screens=$(xrandr -q | awk '/[0-9]+x[0-9]+\+[0-9]+\+[0-9]+/ && /primary/ {print $4} /[0-9]+x[0-9]+\+[0-9]+\+[0-9]+/ && !/primary/ {print $3}')
+
+if [[ $(echo "$screens" | wc -l) == 1 ]]
+then
+    echo caca
+    convert "$image" "${hue[@]}" "${pixelate[@]}" "${addimg[@]}" "$image"
+else
+    echo pipi
+    transform "$screens"
+fi
 
 # feh "$image"
 [[ "$#" -ge 1 && "$1" == '-s' ]] || xset +dpms dpms 5 5 5
 [[ "$#" -ge 1 && "$1" == '-s' ]] && (sleep 2; systemctl suspend) &
 i3lock -nei "$image" "${pretty[@]}" 2> /dev/null || i3lock -neui "$image"
 revert
+rm -f "$image"
