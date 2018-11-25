@@ -2,7 +2,7 @@
 ! see https://superuser.com/questions/1247281/how-to-configure-rxvt-unicode-to-behave-similar-to-gnome-terminal-or-others-f
 
 URxvt.font: xft:Monospace-12
-URxvt.perl-ext-common:  default,matcher,selection-to-clipboard,font-size,new-window,keyboard-select
+URxvt.perl-ext-common:  default,matcher,selection-to-clipboard,font-size,new-window,keyboard-select,vtwheel
 URxvt.url-launcher:     firefox
 URxvt.matcher.button:   3
 URxvt.secondaryScreen: 1
