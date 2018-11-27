@@ -1,0 +1,62 @@
+-- Conk1y settings --
+conky.config = {
+    background = false,
+    update_interval = 1,
+
+    cpu_avg_samples = 2,
+    net_avg_samples = 2,
+
+    override_utf8_locale = true,
+
+    double_buffer = true,
+    no_buffers = true,
+
+    text_buffer_size = 2048,
+    imlib_cache_size = 0,
+
+    -- Window specifications --
+
+    own_window = true,
+    own_window_type = "override",
+    own_window_transparency = true,
+    own_window_hints = "undecorated,sticky,skip_taskbar,skip_pager,below",
+    	own_window_argb_visual = true,
+      own_window_argb_value = 60,
+
+
+    border_inner_margin = 0,
+    border_outer_margin = 0,
+
+    minimum_width = 200,
+    minimum_height = 80,
+
+    alignment = "top_left",
+    gap_x = 80,
+    gap_y = 300,
+
+    -- Graphics settings --
+    draw_shades = false,
+    draw_outline = false,
+    draw_borders = false,
+    draw_graph_borders = false,
+
+border_inner_margin = 10,
+border_outer_margin = 0,
+
+    -- Text settings --
+    use_xft = true,
+    xftfont = "Santana:size=10",
+    xftalpha = 0.8,
+
+    uppercase = false,
+
+    default_color = "#FFFFFF",
+
+	font = 'Ubuntu Mono:size=12',
+}
+
+conky.text = [[
+${font}${alignc}TODO list${alignr}
+${hr}
+${voffset 10}${execp ~/.config/conky/viewnotes.sh}
+]]
