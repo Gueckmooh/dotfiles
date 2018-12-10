@@ -157,7 +157,7 @@ export PS1="┌─[\[$(tput sgr0)\]\[\033[38;5;7m\]\$(__ret_code)\[$(tput sgr0)\
 
 # export PS1="┌─[\[$(tput sgr0)\]\[\033[38;5;7m\]\$?\[$(tput sgr0)\]\[\033[38;5;15m\]]\[$(tput sgr0)\]\[\033[38;5;1m\]\u\[$(tput sgr0)\]\[\033[38;5;15m\]@\[$(tput sgr0)\]\[\033[38;5;2m\]\h\[$(tput sgr0)\]\[\033[38;5;15m\]:\[$(tput sgr0)\]\[\033[38;5;63m\]\w\[$(tput sgr0)\]\$(parse_git_branch)\[\033[38;5;15m\]\n└─[\[$(tput sgr0)\]\[\033[38;5;226m\]\A\[$(tput sgr0)\]\[\033[38;5;15m\]]\[$(tput sgr0)\]\[\033[38;5;1m\]---\[$(tput sgr0)\]\[\033[38;5;15m\]\\$ \[$(tput sgr0)\]"
 
-export TERM=xterm-256color
+export TERM=rxvt-unicode-256color
 # export PATH=$PATH:/home/brignone/Documents/node/node-v6.11.3-linux-x64/bin
 export JAVA_HOME=/usr/lib/jvm/jdk-8-oracle-x64
 
@@ -189,7 +189,7 @@ export JAVA_HOME=/usr/lib/jvm/java-8-openjdk-amd64/jre
 # source /opt/Xilinx/Vivado/2018.2/settings64.sh
 #source /home/brignone/Xilinx/Vivado/2017.3/settings64.sh
 
-export LUA_PATH="$HOME/lua/?.lua;$HOME/lua/?/init.lua;$HOME/lua/?/?.lua;;"
+export LUA_PATH="$HOME/lua/?.lua;$HOME/lua/?/init.lua;$HOME/lua/?/?.lua;$HOME/lua/?.so;;"
 
 
 # Exercism

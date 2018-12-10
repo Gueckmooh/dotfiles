@@ -35,7 +35,7 @@ higher_cutoff_freq = 10000
 ; source = hw:Loopback,1
 
 method = fifo
-source = /tmp/mpd.fifo
+source = /tmp/mpd_cava.fifo
 
 
 [output]
