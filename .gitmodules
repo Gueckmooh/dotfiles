@@ -10,3 +10,6 @@
 [submodule "mutt/.config/mutt"]
 	path = mutt/.config/mutt
 	url = git@github.com:Gueckmooh/mutt_config.git
+[submodule "vim/.vim"]
+	path = vim/.vim
+	url = git@github.com:Gueckmooh/vim.git

@@ -189,7 +189,7 @@ export JAVA_HOME=/usr/lib/jvm/java-8-openjdk-amd64/jre
 # source /opt/Xilinx/Vivado/2018.2/settings64.sh
 #source /home/brignone/Xilinx/Vivado/2017.3/settings64.sh
 
-export LUA_PATH="$HOME/lua/?.lua;$HOME/lua/?/init.lua;$HOME/lua/?/?.lua;$HOME/lua/?.so;;"
+export LUA_PATH="./?/init.lua;$HOME/lua/?.lua;$HOME/lua/?/init.lua;$HOME/lua/?/?.lua;$HOME/lua/?.so;;"
 
 
 # Exercism

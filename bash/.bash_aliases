@@ -51,3 +51,7 @@ alias xb='uxterm -e "source ~/.bash_profile && ranger"'
 
 alias dcrypt='mkdir -p ~/crypt && encfs -i 5 ~/.crypt ~/crypt && cd ~/crypt'
 alias look_away='cd && fusermount -u ~/crypt && rmdir ~/crypt'
+# alias macl='emacsclient -nw -e "(create-scratch-buffer)" -e "(alpha-on-term)"'
+alias compton-vsynco='compton --backend glx --paint-on-overlay --glx-no-stencil --vsync
+ "opengl-swc" --unredir-if-possible --config /dev/null'
+alias tomato-party='redshift'

@@ -1,3 +1,5 @@
+#!/bin/bash
+
 function lb {
     if [[ "$#" == 0 ]]
     then
@@ -20,15 +22,8 @@ function e {
 function macl {
     if [[ "$#" != 0 ]]
     then
-        # open=""
-        # for i in $*
-        # do
-        #     open="$open -e '(find-file \"$i\")'"
-        # done
-        # emacsclient --alternate-editor 'vim' -nw -e "(alpha-on-term)" $open
-        emacsclient --alternate-editor 'vim' -nw -e "(alpha-on-term)" -e "(find-file \"$1\")"
+        emacsclient --alternate-editor 'vim' -nw $*
     else
-        # emacsclient --alternate-editor 'vim' -nw .
-        emacsclient --alternate-editor 'vim' -nw -e "(alpha-on-term)" -e '(dired ".")'
+        emacsclient --alternate-editor 'vim' -nw .
     fi
 }

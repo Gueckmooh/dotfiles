@@ -56,7 +56,7 @@ URxvt.keysym.Control-Right: \033[1;5C
 ! New window
 URxvt.keysym.C-N: perl:new-window
 
-URxvt.internalBorder: 20
+! URxvt.internalBorder: 20
 
 *color0:  #2E3436
 *color1:  #CC0000
@@ -78,3 +78,5 @@ URxvt.internalBorder: 20
 ! For the dropdown terminal
 QuakeDD*depth: 32
 QuakeDD.background: rgba:2300/2700/2900/e800
+
+URxvt*meta8: false
