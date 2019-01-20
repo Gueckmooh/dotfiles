@@ -6,7 +6,7 @@
 	url = https://github.com/Gueckmooh/yet-another-awesome-config.git
 [submodule "bin/sources/backlight"]
 	path = bin/sources/backlight
-	url = https://github.com/Gueckmooh/backlight.git
+	url = git@github.com:Gueckmooh/backlight.git
 [submodule "mutt/.config/mutt"]
 	path = mutt/.config/mutt
 	url = git@github.com:Gueckmooh/mutt_config.git
