@@ -32,8 +32,7 @@ install () {
         less "$(realpath $1)/package.info"
     fi
 
-    echo "$STOW" "$1"
-    $STOW "$1" -n
+    $STOW "$1"
 
     if [[ $? != "0" ]]
     then
