@@ -12,6 +12,17 @@
 #+EXCLUDE_TAGS: noexport
 #+CREATOR: Emacs 25.1.1 (Org mode 9.1.14)
 
-* Install
+#+BEGIN_QUOTE
+This repository contains the configuration that I use on my
+system. This dotfile repository is based on the use of GNU Stow.
+#+END_QUOTE
 
-type =stow <dir>=
+* Install
+  To install this repository :
+
+  #+BEGIN_EXAMPLE
+    $ git clone https://github.com/Gueckmooh/dotfiles
+    $ cd dotfiles
+    $ bash bootstrap.sh
+    $ stow <dir> # With the wanted configuration
+  #+END_EXAMPLE
