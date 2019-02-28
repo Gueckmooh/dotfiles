@@ -154,6 +154,7 @@ __ret_code () {
 }
 
 export PS1="┌─[\[$(tput sgr0)\]\[\033[38;5;7m\]\$(__ret_code)\[$(tput sgr0)\]\[\033[38;5;15m\]]\[$(tput sgr0)\]\[\033[38;5;1m\]\u\[$(tput sgr0)\]\[\033[38;5;15m\]@\[$(tput sgr0)\]\[\033[38;5;2m\]\h\[$(tput sgr0)\]\[\033[38;5;15m\]:\[$(tput sgr0)\]\[\033[38;5;63m\]\$(__pth)\[$(tput sgr0)\]\$(parse_git_branch)\[\033[38;5;15m\]\n└─[\[$(tput sgr0)\]\[\033[38;5;226m\]\A\[$(tput sgr0)\]\[\033[38;5;15m\]]\[$(tput sgr0)\]\[\033[38;5;1m\]---\[$(tput sgr0)\]\[\033[38;5;15m\]\\$ \[$(tput sgr0)\]"
+export MYPS1="┌─[\[$(tput sgr0)\]\[\033[38;5;7m\]\$(__ret_code)\[$(tput sgr0)\]\[\033[38;5;15m\]]\[$(tput sgr0)\]\[\033[38;5;1m\]\u\[$(tput sgr0)\]\[\033[38;5;15m\]@\[$(tput sgr0)\]\[\033[38;5;2m\]\h\[$(tput sgr0)\]\[\033[38;5;15m\]:\[$(tput sgr0)\]\[\033[38;5;63m\]\$(__pth)\[$(tput sgr0)\]\$(parse_git_branch)\[\033[38;5;15m\]\n└─[\[$(tput sgr0)\]\[\033[38;5;226m\]\A\[$(tput sgr0)\]\[\033[38;5;15m\]]\[$(tput sgr0)\]\[\033[38;5;1m\]---\[$(tput sgr0)\]\[\033[38;5;15m\]\\$ \[$(tput sgr0)\]"
 
 # export PS1="┌─[\[$(tput sgr0)\]\[\033[38;5;7m\]\$?\[$(tput sgr0)\]\[\033[38;5;15m\]]\[$(tput sgr0)\]\[\033[38;5;1m\]\u\[$(tput sgr0)\]\[\033[38;5;15m\]@\[$(tput sgr0)\]\[\033[38;5;2m\]\h\[$(tput sgr0)\]\[\033[38;5;15m\]:\[$(tput sgr0)\]\[\033[38;5;63m\]\w\[$(tput sgr0)\]\$(parse_git_branch)\[\033[38;5;15m\]\n└─[\[$(tput sgr0)\]\[\033[38;5;226m\]\A\[$(tput sgr0)\]\[\033[38;5;15m\]]\[$(tput sgr0)\]\[\033[38;5;1m\]---\[$(tput sgr0)\]\[\033[38;5;15m\]\\$ \[$(tput sgr0)\]"
 
@@ -196,3 +197,30 @@ export LUA_PATH="./?/init.lua;$HOME/lua/?.lua;$HOME/lua/?/init.lua;$HOME/lua/?/?
 # PATH=$PATH:/home/brignone/install/exercism
 
 eval $(thefuck --alias)
+
+# Add Otawa to path
+OTAWA_PATH='/home/brignone/install/otawa/Otawa/linux/bin'
+PATH=$PATH:$OTAWA_PATH
+# added by Anaconda3 2018.12 installer
+# >>> conda init >>>
+# !! Contents within this block are managed by 'conda init' !!
+__conda_setup="$(CONDA_REPORT_ERRORS=false '/home/brignone/anaconda3/bin/conda' shell.bash hook 2> /dev/null)"
+if [ $? -eq 0 ]; then
+    \eval "$__conda_setup"
+else
+    if [ -f "/home/brignone/anaconda3/etc/profile.d/conda.sh" ]; then
+        . "/home/brignone/anaconda3/etc/profile.d/conda.sh"
+        CONDA_CHANGEPS1=false conda activate base
+    else
+        \export PATH="/home/brignone/anaconda3/bin:$PATH"
+    fi
+fi
+unset __conda_setup
+# <<< conda init <<<
+
+export PS1=$MYPS1
+
+
+# MPD confguration
+export MPD_HOST="localhost"
+export MPD_PORT="6601"
