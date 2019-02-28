@@ -21,7 +21,7 @@ system. This dotfile repository is based on the use of GNU Stow.
   To install this repository :
 
   #+BEGIN_EXAMPLE
-    $ git clone https://github.com/Gueckmooh/dotfiles
+    $ git clone https://github.com/Gueckmooh/dotfiles --recursive
     $ cd dotfiles
     $ bash bootstrap.sh
     $ stow <dir> # With the wanted configuration
