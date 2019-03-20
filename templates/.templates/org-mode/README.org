@@ -129,3 +129,22 @@ Exemple
 #+END_EXAMPLE
 
 Sentence with inline ~verbatim~.
+
+* Info
+  :PROPERTIES:
+  :UNNUMBERED: t
+  :END:
+
+  File generated using:
+  #+BEGIN_SRC emacs-lisp -n :exports results :eval yes
+    (princ (concat
+            (format "Emacs version: %s\n"
+                    (emacs-version))
+            (format "org version: %s\n"
+                    (org-version))
+            (format "\nLaTeX version: %s"
+                    (shell-command-to-string "pdflatex --version"))
+            ))
+  #+END_SRC
+
+
