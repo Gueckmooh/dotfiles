@@ -1,0 +1,131 @@
+#+OPTIONS: ':nil *:t -:t ::t <:t H:3 \n:nil ^:t arch:headline
+#+OPTIONS: author:t broken-links:nil c:nil creator:nil
+#+OPTIONS: d:(not "LOGBOOK") date:t e:t email:nil f:t inline:t num:t
+#+OPTIONS: p:nil pri:nil prop:nil stat:t tags:t tasks:t tex:t
+#+OPTIONS: timestamp:t title:t toc:nil todo:t |:t
+#+TITLE: README
+#+DATE: \today
+#+AUTHOR: Enzo Brignon
+#+LANGUAGE: en
+#+SELECT_TAGS: export
+#+EXCLUDE_TAGS: noexport
+#+CREATOR: Emacs 25.1.1 (Org mode 9.1.14)
+#+LATEX_CLASS: readme
+#+LATEX_CLASS_OPTIONS:
+#+LATEX_HEADER: 
+#+LATEX_CLASS_OPTIONS: [a4paper, 11pt]
+#+LATEX_HEADER: \usepackage[left=3cm, right=3cm, top=3cm, bottom=3cm]{geometry}
+#+LATEX_HEADER: \usepackage{hyperref}
+#+LATEX_HEADER: \usepackage{enumitem}
+#+LATEX_HEADER: \usepackage{tikz}
+#+LATEX_HEADER: \usepackage{grafcet}
+#+LATEX_HEADER: \usepackage{subcaption}
+#+LATEX_HEADER: \usepackage{multicol}
+#+LATEX_HEADER: \usepackage{lipsum}
+#+LATEX_HEADER: \usepackage[french]{algorithm2e}
+#+LATEX_HEADER: \usepackage{marginnote}
+#+LATEX_HEADER: \usepackage{float}
+#+LATEX_HEADER: \usepackage{scrextend}
+#+LATEX_HEADER: \usepackage{array}
+#+LATEX_HEADER_EXTRA: \usemintedstyle{emacs}
+#+LATEX_HEADER_EXTRA: \setlength{\parskip}{0.6em}
+#+LATEX_HEADER_EXTRA: \setlength{\itemsep}{.1cm}
+#+LATEX_HEADER_EXTRA: \setcounter{secnumdepth}{3}
+#+LATEX_HEADER_EXTRA: \setlist{nolistsep}
+#+LATEX_HEADER_EXTRA: \usetikzlibrary{arrows}
+#+LATEX_HEADER_EXTRA: \hypersetup{
+#+LATEX_HEADER_EXTRA:     colorlinks = false,
+#+LATEX_HEADER_EXTRA:     linkbordercolor = {white}
+#+LATEX_HEADER_EXTRA: }
+#+LATEX_HEADER_EXTRA:
+#+DESCRIPTION:
+#+KEYWORDS:
+#+SUBTITLE:
+#+LATEX_COMPILER: pdflatex
+#+LaTeX: \vspace{-2.5em}
+
+#+begin_src elisp :results silent :exports results
+  (setq org-latex-minted-options
+        '(("bgcolor" "mbg") ("frame" "lines") ("fontsize" "\\footnotesize")))
+  (message "")
+
+  (defun org-latex--text-markup (text markup info)
+    "Format TEXT depending on MARKUP text markup.
+  INFO is a plist used as a communication channel.  See
+  `org-latex-text-markup-alist' for details."
+    (let ((fmt (cdr (assq markup (plist-get info :latex-text-markup-alist)))))
+      (cl-case fmt
+        ;; No format string: Return raw text.
+        ((nil) text)
+        ;; Handle the `verb' special case: Find an appropriate separator
+        ;; and use "\\verb" command.
+        (verb
+         (let ((separator (org-latex--find-verb-separator text)))
+           (concat "\\verb"
+                   separator
+                   (replace-regexp-in-string "\n" " " text)
+                   separator)))
+        ;; Handle the `protectedtexttt' special case: Protect some
+        ;; special chars and use "\texttt{%s}" format string.
+        (protectedtexttt
+         (format "\\textttt{%s}"
+                 (replace-regexp-in-string
+                  "--\\|[\\{}$%&_#~^]"
+                  (lambda (m)
+                    (cond ((equal m "--") "-{}-")
+                          ((equal m "\\") "\\textbackslash{}")
+                          ((equal m "~") "\\textasciitilde{}")
+                          ((equal m "^") "\\textasciicircum{}")
+                          (t (org-latex--protect-text m))))
+                  text nil t)))
+        ;; Else use format string.
+        (t (format fmt text)))))
+
+  (add-to-list
+   'org-latex-classes
+   ' ("readme" "\\documentclass[11pt]{readme}"
+      ("\\section{%s}" . "\\section*{%s}")
+      ("\\subsection{%s}" . "\\subsection*{%s}")
+      ("\\subsubsection{%s}" . "\\subsubsection*{%s}")
+      ("\\paragraph{%s}" . "\\paragraph*{%s}")
+      ("\\subparagraph{%s}" . "\\subparagraph*{%s}")))
+
+  (defun org-latex-example-block (example-block _contents info)
+    "Transcode an EXAMPLE-BLOCK element from Org to LaTeX.
+  CONTENTS is nil.  INFO is a plist holding contextual
+  information."
+    (when (org-string-nw-p (org-element-property :value example-block))
+      (let ((environment (or (org-export-read-attribute
+                              :attr_latex example-block :environment)
+                             "Verbatim"))
+            (options "commandchars=\\\\\\{\\}"))
+        (org-latex--wrap-label
+         example-block
+         (format "\\begin{%s}[%s]\n\\colorbox{vbg}{\n\\parbox{\\textwidth}{\n%s\n}\n}\n\\end{%s}"
+                 environment
+                 options
+                 (org-export-format-code-default example-block info)
+                 environment)
+         info))))
+
+  (add-to-list 'org-latex-minted-langs
+               '(C "c_cpp_psl.py:CPSLLexer -x"))
+#+end_src
+
+#+BEGIN_QUOTE
+QUOTE
+#+END_QUOTE
+
+* Section
+** Subsection
+*** Subsubsection
+
+#+begin_src C
+  printf ("C source code\n");
+#+end_src
+
+#+BEGIN_EXAMPLE
+Exemple
+#+END_EXAMPLE
+
+Sentence with inline ~verbatim~.
