@@ -18,8 +18,40 @@ fail () {
     exit
 }
 
+TEMP=$(getopt -o 'f' --long 'force' -n "$0" -- "$@")
+
+if [ $? -ne 0 ]; then
+	  echo 'Terminating...' >&2
+	  exit 1
+fi
+
+eval set -- "$TEMP"
+unset TEMP
+
+while true; do
+	  case "$1" in
+        '-f'|'--force')
+            force=t
+            shift
+            continue
+            ;;
+        '--')
+            shift
+            break
+            ;;
+		    *)
+			      echo 'Internal error!' >&2
+			      exit 1
+		        ;;
+	  esac
+done
 
 setup_gitconfig () {
+
+    if [[ "$force" ]]
+    then
+        rm -fr git
+    fi
 
     if [[ ! -d git ]]
     then
