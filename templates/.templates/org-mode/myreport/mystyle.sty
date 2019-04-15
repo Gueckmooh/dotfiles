@@ -1,0 +1,69 @@
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{mystyle}[2019/04/09 Style Readme]
+
+\RequirePackage{titletoc}
+\RequirePackage{amsthm}
+
+\titlecontents{section}
+[1em] % ie, 1.5em (chapter) + 2.3em
+{}
+{\bfseries\contentslabel{2.3em}}
+{\hspace*{-2.3em}}
+{\titlerule*[1pc]{.}\contentspage}
+
+\titlecontents{subsection}
+[2em] % ie, 1.5em (chapter) + 2.3em
+{}
+{\contentslabel{2.3em}}
+{\hspace*{-2.3em}}
+{\titlerule*[1pc]{.}\contentspage}
+
+\titlecontents*{subsubsection}
+[2em]             % left margin
+{}                  % above code
+{%                  % numbered format
+{\thecontentslabel.~}%
+}%
+{}         % unnumbered format
+{~(\thecontentspage)}         % filler-page-format
+[  ---  ]
+
+\newtheoremstyle{mydefinition}% name of the style to be used
+{1em}% measure of space to leave above the theorem. E.g.: 3pt
+{1em}% measure of space to leave below the theorem. E.g.: 3pt
+{\em}% name of font to use in the body of the theorem
+{}% measure of space to indent
+{\bf}% name of head font
+{. ---}% punctuation between head and body
+{ }% space after theorem head; " " = normal interword space
+{\thmname{#1}\thmnumber{ #2}\thmnote{ (#3)}}% Manually specify head
+
+\newtheoremstyle{myremark}% name of the style to be used
+{}% measure of space to leave above the theorem. E.g.: 3pt
+{}% measure of space to leave below the theorem. E.g.: 3pt
+{}% name of font to use in the body of the theorem
+{1em}% measure of space to indent
+{\em}% name of head font
+{.}% punctuation between head and body
+{ }% space after theorem head; " " = normal interword space
+{\thmname{#1}\thmnumber{ #2}\thmnote{ (#3)}}% Manually specify head
+
+\newtheoremstyle{mynotation}% name of the style to be used
+{1em}% measure of space to leave above the theorem. E.g.: 3pt
+{1em}% measure of space to leave below the theorem. E.g.: 3pt
+{}% name of font to use in the body of the theorem
+{}% measure of space to indent
+{\bf}% name of head font
+{. }% punctuation between head and body
+{ }% space after theorem head; " " = normal interword space
+{\thmname{#1}\thmnumber{ #2}\thmnote{ --- #3}}% Manually specify head
+
+\theoremstyle{mydefinition}
+\newtheorem{defi}{Definition}[section]
+\newtheorem{prop}{Property}[section]
+\theoremstyle{myremark}
+\newtheorem{rmk}{Remark}[section]
+\theoremstyle{mynotation}
+\newtheorem{nota}{Notation}[section]
+
+\endinput

@@ -1,0 +1,4 @@
+$makeindex = 'makeindex -s style.ist %O -o %D %S';
+$compiling_cmd = "notify-send -t 5000 LATEXMK COMPILING; xdotool search --name \"%D\" set_window --name \"%D COMPILING\"";
+$success_cmd   = "notify-send -t 5000 LATEXMK OK; xdotool search --name \"%D\" set_window --name \"%D OK\"";
+$failure_cmd   = "notify-send -t 5000 LATEXMK FAILURE -u critical; xdotool search --name \"%D\" set_window --name \"%D FAILURE\"";

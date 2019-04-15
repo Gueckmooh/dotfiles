@@ -1,0 +1,124 @@
+% Created 2019-04-15 lun. 13:07
+\documentclass[a4paper, 12pt, english]{myreport}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{graphicx}
+\usepackage{grffile}
+\usepackage{longtable}
+\usepackage{wrapfig}
+\usepackage{rotating}
+\usepackage[normalem]{ulem}
+\usepackage{amsmath}
+\usepackage{textcomp}
+\usepackage{amssymb}
+\usepackage{capt-of}
+\usepackage{hyperref}
+\usepackage{minted}
+\usepackage[left=3cm, right=3cm, top=3cm, bottom=3cm]{geometry}
+\usepackage{amsthm}
+\usepackage{mystyle}
+\usepackage{hyperref}
+\usepackage{enumitem}
+\usepackage{tikz,fp}
+\usepackage{grafcet}
+\usepackage{subcaption}
+\usepackage{multicol}
+\usepackage{lipsum}
+\usepackage[french]{algorithm2e}
+\usepackage{marginnote}
+\usepackage{float}
+\usepackage{scrextend}
+\usepackage{array}
+\usepackage{imakeidx}
+\usepackage{etoolbox}
+\newbool{isDraft}
+\ifbool{isDraft}{\usepackage{draftwatermark}}{}
+\usemintedstyle{emacs}
+\setlength{\parskip}{0.6em}
+\setlength{\itemsep}{.1cm}
+\setcounter{secnumdepth}{3}
+\setlist{nolistsep}
+\usetikzlibrary{arrows,shapes,automata,petri, positioning, patterns, decorations, decorations.markings}
+\hypersetup{
+colorlinks = false,
+linkbordercolor = {white},
+urlbordercolor = {white},
+citebordercolor = {white}
+}
+\ifbool{isDraft}{\SetWatermarkText{\textsc{Draft}}
+\SetWatermarkScale{2}}{}
+\makeindex[title=General Index,options=-s 31083.ist -r]
+\makeindex[name=petrinet,title=Index for Petri Nets,options=-s 31083.ist -r]
+\newcommand{\firing}[1]{\ensuremath\xrightarrow{\quad #1 \quad}}
+\newcommand{\nm}{\ensuremath\mathbf{m}}
+\newcommand{\capa}{\ensuremath\text{Cap}}
+\makeatletter
+\renewcommand{\@idxitem}{\par\hangindent=20pt }
+\makeatother
+\author{Enzo Brignon}
+\date{\today}
+\title{From GRAFCET to ELPN}
+\hypersetup{
+ pdfauthor={Enzo Brignon},
+ pdftitle={From GRAFCET to ELPN},
+ pdfkeywords={},
+ pdfsubject={},
+ pdfcreator={Emacs 25.1.1 (Org mode 9.1.14)},
+ pdflang={English}}
+\begin{document}
+
+\maketitle
+\vspace{-2em}
+\tikzset{place/.style={circle,ultra thick,draw=black,fill=white,minimum size=8mm},
+  transition/.style={rectangle,thick,fill=black,minimum width=8mm,inner ysep=2pt},
+  vtransition/.style={rectangle,thick,fill=black,minimum height=8mm,inner xsep=2pt},
+  -|/.style={to path={-| (\tikztotarget)}},
+  |-/.style={to path={|- (\tikztotarget)}},
+  multiwire/.style n args={1}{postaction={decoration={markings,mark=at position 0.5 with {\arrow{|}}, mark=at position 0.5 with {\node[xshift=7pt, yshift=2pt] {#1};}},decorate}}}
+
+\begin{quote}
+This is a text in quote environment
+\end{quote}
+
+\tableofcontents
+\newpage
+
+\part{A Part}
+\label{sec:orge27037d}
+\section{A section}
+\label{sec:orga27f17c}
+\subsection{A subsection}
+\label{sec:org776d751}
+\subsubsection{A subsubsection}
+\label{sec:org7cca9b5}
+\paragraph{A paragraph}
+\label{sec:orgd794a68}
+
+
+\section*{Info}
+\label{sec:org8b6d891}
+File generated using:
+\begin{Verbatim}[commandchars=\\\{\}]
+\colorbox{vbg}{
+\parbox{\textwidth}{
+Emacs version: GNU Emacs 25.1.1 (x86_64-pc-linux-gnu, GTK+ Version 3.22.11)
+ of 2017-09-15, modified by Debian
+org version: 9.1.14
+
+LaTeX version: pdfTeX 3.14159265-2.6-1.40.17 (TeX Live 2016/Debian)
+kpathsea version 6.2.2
+Copyright 2016 Han The Thanh (pdfTeX) et al.
+There is NO warranty.  Redistribution of this software is
+covered by the terms of both the pdfTeX copyright and
+the Lesser GNU General Public License.
+For more information about these matters, see the file
+named COPYING and the pdfTeX source.
+Primary author of pdfTeX: Han The Thanh (pdfTeX) et al.
+Compiled with libpng 1.6.28; using libpng 1.6.28
+Compiled with zlib 1.2.8; using zlib 1.2.8
+Compiled with poppler version 0.48.0
+
+}
+}
+\end{Verbatim}
+\end{document}

@@ -1,0 +1,26 @@
+preamble "\n \\begin{theindex} \n\n\\small"
+postamble "\n\n \\end{theindex}\n"
+
+# group_skip   "\n\n  \\vspace*{2mm}\n"
+headings_flag 1 %des lettres entre les groupes
+# symhead_positive  "Symboles spéciaux"
+numhead_positive  "1-9"
+
+item_0   "\n\\normalfont \\item "
+item_1   "\n\\normalfont \\subitem "
+item_2   "\n\\normalfont \\subsubitem "
+item_01  "\n\\normalfont \\subitem "
+item_12  "\n\\normalfont \\subsubitem "
+item_x1  "\n\\normalfont \\subitem "
+item_x2  "\n\\normalfont \\subsubitem "
+delim_0  "\\dotfill "
+delim_1  "\\dotfill "
+delim_2  "\\dotfill "
+delim_n  ",\\,"
+delim_r  "-"
+
+indent_space "\t"
+indent_length 8
+
+heading_prefix  "{\\raggedright\\bfseries  "
+heading_suffix  "}\n\\medskip\\nopagebreak"

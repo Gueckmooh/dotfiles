@@ -1,0 +1,266 @@
+#+OPTIONS: ':nil *:t -:t ::t <:t H:5 \n:nil ^:t arch:headline
+#+OPTIONS: author:t broken-links:nil c:nil creator:nil
+#+OPTIONS: d:(not "LOGBOOK") date:t e:t email:nil f:t inline:t num:t
+#+OPTIONS: p:nil pri:nil prop:nil stat:t tags:nil tasks:t tex:t
+#+OPTIONS: timestamp:t title:t toc:nil todo:t |:t
+#+TITLE: From GRAFCET to ELPN
+#+DATE: \today
+#+AUTHOR: Enzo Brignon
+#+LANGUAGE: en
+#+SELECT_TAGS: export
+#+EXCLUDE_TAGS: noexport
+#+CREATOR: Emacs 25.1.1 (Org mode 9.1.14)
+#+LATEX_CLASS: myreport
+#+LATEX_CLASS_OPTIONS: [a4paper, 12pt, english]
+#+LATEX_HEADER: \usepackage[left=3cm, right=3cm, top=3cm, bottom=3cm]{geometry}
+#+LATEX_HEADER: \usepackage{amsthm}
+#+LATEX_HEADER: \usepackage{mystyle}
+# #+LATEX_HEADER: \usepackage[english]{babel}
+#+LATEX_HEADER: \usepackage{hyperref}
+#+LATEX_HEADER: \usepackage{enumitem}
+#+LATEX_HEADER: \usepackage{tikz,fp}
+#+LATEX_HEADER: \usepackage{grafcet}
+#+LATEX_HEADER: \usepackage{subcaption}
+#+LATEX_HEADER: \usepackage{multicol}
+#+LATEX_HEADER: \usepackage{lipsum}
+#+LATEX_HEADER: \usepackage[french]{algorithm2e}
+#+LATEX_HEADER: \usepackage{marginnote}
+#+LATEX_HEADER: \usepackage{float}
+#+LATEX_HEADER: \usepackage{scrextend}
+#+LATEX_HEADER: \usepackage{array}
+#+LATEX_HEADER: \usepackage{imakeidx}
+#+LATEX_HEADER: \usepackage{etoolbox}
+#+LATEX_HEADER: \newbool{isDraft}
+# #+LATEX_HEADER: \booltrue{isDraft}
+#+LATEX_HEADER: \ifbool{isDraft}{\usepackage{draftwatermark}}{}
+# #+LATEX_HEADER: \ifbool{isDraft}{\usepackage[draft]{flowfram}}{}
+# #+LATEX_HEADER: \usepackage{amsmath}
+# #+LATEX_HEADER: \usepackage[mathrm=sym]{unicode-math}
+#+LATEX_HEADER_EXTRA: \usemintedstyle{emacs}
+#+LATEX_HEADER_EXTRA: \setlength{\parskip}{0.6em}
+#+LATEX_HEADER_EXTRA: \setlength{\itemsep}{.1cm}
+#+LATEX_HEADER_EXTRA: \setcounter{secnumdepth}{3}
+#+LATEX_HEADER_EXTRA: \setlist{nolistsep}
+#+LATEX_HEADER_EXTRA: \usetikzlibrary{arrows,shapes,automata,petri, positioning, patterns, decorations, decorations.markings}
+#+LATEX_HEADER_EXTRA: \hypersetup{
+#+LATEX_HEADER_EXTRA:     colorlinks = false,
+#+LATEX_HEADER_EXTRA:     linkbordercolor = {white},
+#+LATEX_HEADER_EXTRA:     urlbordercolor = {white},
+#+LATEX_HEADER_EXTRA:     citebordercolor = {white}
+#+LATEX_HEADER_EXTRA: }
+# #+LATEX_HEADER_EXTRA: \setmathfont{Fira Math}
+#+LATEX_HEADER_EXTRA: \ifbool{isDraft}{\SetWatermarkText{\textsc{Draft}}
+#+LATEX_HEADER_EXTRA: \SetWatermarkScale{2}}{}
+# #+LATEX_HEADER_EXTRA: \setcounter{section}{-1}
+#+LATEX_HEADER_EXTRA: \makeindex[title=General Index,options=-s 31083.ist -r]
+#+LATEX_HEADER_EXTRA: \makeindex[name=petrinet,title=Index for Petri Nets,options=-s 31083.ist -r]
+#+LATEX_HEADER_EXTRA: \newcommand{\firing}[1]{\ensuremath\xrightarrow{\quad #1 \quad}}
+#+LATEX_HEADER_EXTRA: \newcommand{\nm}{\ensuremath\mathbf{m}}
+#+LATEX_HEADER_EXTRA: \newcommand{\capa}{\ensuremath\text{Cap}}
+#+LATEX_HEADER_EXTRA: \makeatletter
+#+LATEX_HEADER_EXTRA: \renewcommand{\@idxitem}{\par\hangindent=20pt }
+#+LATEX_HEADER_EXTRA: \makeatother
+#+LATEX_HEADER_EXTRA: 
+#+DESCRIPTION:
+#+KEYWORDS:
+#+SUBTITLE:
+#+LATEX_COMPILER: latexmk
+#+LaTeX: \vspace{-2em}
+#+MACRO: ni @@latex:\noindent@@
+#+MACRO: im @@latex:\marginnote{\color{red}$1}@@
+#+MACRO: ref @@latex:\ref{$1}@@
+#+MACRO: begin-box #+LATEX: \begin{MyFramed}
+#+MACRO: end-box   #+LATEX: \end{MyFramed}
+#+MACRO: nl        @@latex:\\@@
+#+MACRO: cite
+
+#+begin_src elisp :results silent :exports results
+  (setq org-latex-minted-options
+        '(("bgcolor" "mbg") ("frame" "lines") ("fontsize" "\\footnotesize")))
+  (message "")
+
+  (defun org-latex--text-markup (text markup info)
+    "Format TEXT depending on MARKUP text markup.
+  INFO is a plist used as a communication channel.  See
+  `org-latex-text-markup-alist' for details."
+    (let ((fmt (cdr (assq markup (plist-get info :latex-text-markup-alist)))))
+      (cl-case fmt
+        ;; No format string: Return raw text.
+        ((nil) text)
+        ;; Handle the `verb' special case: Find an appropriate separator
+        ;; and use "\\verb" command.
+        (verb
+         (let ((separator (org-latex--find-verb-separator text)))
+           (concat "\\verb"
+                   separator
+                   (replace-regexp-in-string "\n" " " text)
+                   separator)))
+        ;; Handle the `protectedtexttt' special case: Protect some
+        ;; special chars and use "\texttt{%s}" format string.
+        (protectedtexttt
+         (format "\\textttt{%s}"
+                 (replace-regexp-in-string
+                  "--\\|[\\{}$%&_#~^]"
+                  (lambda (m)
+                    (cond ((equal m "--") "-{}-")
+                          ((equal m "\\") "\\textbackslash{}")
+                          ((equal m "~") "\\textasciitilde{}")
+                          ((equal m "^") "\\textasciicircum{}")
+                          (t (org-latex--protect-text m))))
+                  text nil t)))
+        ;; Else use format string.
+        (t (format fmt text)))))
+
+  (add-to-list
+   'org-latex-classes
+   ' ("myreport" "\\documentclass[11pt]{myreport}"
+      ("\\part{%s}" . "\\part*{%s}")
+      ("\\section{%s}" . "\\section*{%s}")
+      ("\\subsection{%s}" . "\\subsection*{%s}")
+      ("\\subsubsection{%s}" . "\\subsubsection*{%s}")
+      ("\\paragraph{%s}" . "\\paragraph*{%s}")
+      ("\\subparagraph{%s}" . "\\subparagraph*{%s}")))
+
+  (defun org-latex-example-block (example-block _contents info)
+    "Transcode an EXAMPLE-BLOCK element from Org to LaTeX.
+  CONTENTS is nil.  INFO is a plist holding contextual
+  information."
+    (when (org-string-nw-p (org-element-property :value example-block))
+      (let ((environment (or (org-export-read-attribute
+                              :attr_latex example-block :environment)
+                             "Verbatim"))
+            (options "commandchars=\\\\\\{\\}"))
+        (org-latex--wrap-label
+         example-block
+         (format "\\begin{%s}[%s]\n\\colorbox{vbg}{\n\\parbox{\\textwidth}{\n%s\n}\n}\n\\end{%s}"
+                 environment
+                 options
+                 (org-export-format-code-default example-block info)
+                 environment)
+         info))))
+
+  (add-to-list 'org-latex-minted-langs
+               '(C "c_cpp_psl.py:CPSLLexer -x"))
+
+  (defun org-latex-export-to-latex
+    (&optional async subtreep visible-only body-only ext-plist)
+    (interactive)
+    (let ((outfile (org-export-output-file-name ".tex" subtreep)))
+      (progn
+        (add-to-list 'auto-mode-alist '("\\.tex\\'" . fundamental-mode))
+        (org-export-to-file 'latex outfile
+          async subtreep visible-only body-only ext-plist)
+        (setq auto-mode-alist (cdr auto-mode-alist)))))
+
+  (defun trim-string (string)
+    "Remove white spaces in beginning and ending of STRING.
+  White space here is any of: space, tab, emacs newline (line feed, ASCII 10)."
+    (replace-regexp-in-string "\\`[ \t\n]*" "" (replace-regexp-in-string "[ \t\n]*\\'" "" string))
+  )
+
+  (defun org-latex-keyword (keyword _contents info)
+    "Transcode a KEYWORD element from Org to LaTeX.
+  CONTENTS is nil.  INFO is a plist holding contextual information."
+    (let ((key (org-element-property :key keyword))
+          (value (org-element-property :value keyword)))
+      (cond
+       ((string= key "LATEX") value)
+       ((string= key "INDEX") (let ((l (split-string value "\:index ")))
+                                (let ((value (car l))
+                                      (index (cdr l)))
+                                  (if index
+                                      (format "\\index[%s]{%s}"
+                                              (trim-string (car index))
+                                              (trim-string value))
+                                    (format "\\index{%s}" (trim-string value))
+                                    ))))
+       ((string= key "TOC")
+        (let ((case-fold-search t))
+          (cond
+     ((string-match-p "\\<headlines\\>" value)
+      (let* ((localp (string-match-p "\\<local\\>" value))
+       (parent (org-element-lineage keyword '(headline)))
+       (level (if (not (and localp parent)) 0
+          (org-export-get-relative-level parent info)))
+       (depth
+        (and (string-match "\\<[0-9]+\\>" value)
+             (format
+        "\\setcounter{tocdepth}{%d}"
+        (+ (string-to-number (match-string 0 value)) level)))))
+        (if (and localp parent)
+      ;; Start local TOC, assuming package "titletoc" is
+      ;; required.
+      (format "\\startcontents[level-%d]
+  \\printcontents[level-%d]{}{0}{%s}"
+        level level (or depth ""))
+          (concat depth (and depth "\n") "\\tableofcontents"))))
+     ((string-match-p "\\<tables\\>" value) "\\listoftables")
+     ((string-match-p "\\<listings\\>" value)
+      (cl-case (plist-get info :latex-listings)
+        ((nil) "\\listoffigures")
+        (minted "\\listoflistings")
+        (otherwise "\\lstlistoflistings")))))))))
+
+  (defun org-latex-special-block (special-block contents info)
+    "Transcode a SPECIAL-BLOCK element from Org to LaTeX.
+  CONTENTS holds the contents of the block.  INFO is a plist
+  holding contextual information."
+    (let ((type (org-element-property :type special-block))
+    (opt (org-export-read-attribute :attr_latex special-block :options))
+    (caption (org-latex--caption/label-string special-block info))
+    (caption-above-p (org-latex--caption-above-p special-block info)))
+      (concat (format "\\begin{%s}%s\n" type (or opt ""))
+        (and caption-above-p caption)
+        contents
+        (and (not caption-above-p) caption)
+        (format "\\end{%s}" type))))
+#+end_src
+
+# Defining tikz style for PN
+#+BEGIN_EXPORT latex
+\tikzset{place/.style={circle,ultra thick,draw=black,fill=white,minimum size=8mm},
+  transition/.style={rectangle,thick,fill=black,minimum width=8mm,inner ysep=2pt},
+  vtransition/.style={rectangle,thick,fill=black,minimum height=8mm,inner xsep=2pt},
+  -|/.style={to path={-| (\tikztotarget)}},
+  |-/.style={to path={|- (\tikztotarget)}},
+  multiwire/.style n args={1}{postaction={decoration={markings,mark=at position 0.5 with {\arrow{|}}, mark=at position 0.5 with {\node[xshift=7pt, yshift=2pt] {#1};}},decorate}}}
+#+END_EXPORT
+
+#+BEGIN_QUOTE
+This is a text in quote environment
+#+END_QUOTE
+
+#+LaTeX: \tableofcontents
+#+LaTeX: \newpage
+
+* A Part
+** A section
+*** A subsection
+**** A subsubsection
+***** A paragraph
+
+
+** Info
+   :PROPERTIES:
+   :UNNUMBERED: t
+   :END:
+
+   File generated using:
+   #+BEGIN_SRC emacs-lisp -n :exports results :eval yes
+     (princ (concat
+             (format "Emacs version: %s\n"
+                     (emacs-version))
+             (format "org version: %s\n"
+                     (org-version))
+             (format "\nLaTeX version: %s"
+                     (shell-command-to-string "pdflatex --version"))
+             ))
+   #+END_SRC
+
+ # Local Variables:
+ # eval: (flyspell-mode t)
+ # eval: (define-key flyspell-mode-map (kbd "M-TAB") nil)
+ # eval: (ispell-change-dictionary "en")
+ # eval: (yas-minor-mode t)
+ # End:
+
