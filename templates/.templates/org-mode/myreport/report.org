@@ -264,3 +264,8 @@ This is a text in quote environment
  # eval: (yas-minor-mode t)
  # End:
 
+#+LaTeX: \newpage
+#+LaTeX: \nocite{*}
+#+BIBLIOGRAPHY: refs plain
+#+LaTeX: \printindex
+#+LaTeX: \printindex[petrinet]
