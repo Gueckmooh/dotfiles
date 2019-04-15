@@ -3,9 +3,9 @@
 #+OPTIONS: d:(not "LOGBOOK") date:t e:t email:nil f:t inline:t num:t
 #+OPTIONS: p:nil pri:nil prop:nil stat:t tags:nil tasks:t tex:t
 #+OPTIONS: timestamp:t title:t toc:nil todo:t |:t
-#+TITLE: From GRAFCET to ELPN
+#+TITLE: TITLE
 #+DATE: \today
-#+AUTHOR: Enzo Brignon
+#+AUTHOR: Author
 #+LANGUAGE: en
 #+SELECT_TAGS: export
 #+EXCLUDE_TAGS: noexport
