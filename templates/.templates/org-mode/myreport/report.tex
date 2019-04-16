@@ -1,4 +1,4 @@
-% Created 2019-04-15 lun. 13:19
+% Created 2019-04-16 mar. 09:59
 \documentclass[a4paper, 12pt, english]{myreport}
 \usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
@@ -47,14 +47,14 @@ citebordercolor = {white}
 }
 \ifbool{isDraft}{\SetWatermarkText{\textsc{Draft}}
 \SetWatermarkScale{2}}{}
-\makeindex[title=General Index,options=-s 31083.ist -r]
-\makeindex[name=petrinet,title=Index for Petri Nets,options=-s 31083.ist -r]
 \newcommand{\firing}[1]{\ensuremath\xrightarrow{\quad #1 \quad}}
 \newcommand{\nm}{\ensuremath\mathbf{m}}
 \newcommand{\capa}{\ensuremath\text{Cap}}
 \makeatletter
 \renewcommand{\@idxitem}{\par\hangindent=20pt }
 \makeatother
+\makeindex[title=General Index,options=-s 31083.ist -r]
+\makeindex[name=other,title=Other Index,options=-s 31083.ist -r]
 \author{Author}
 \date{\today}
 \title{TITLE}
@@ -69,6 +69,7 @@ citebordercolor = {white}
 
 \maketitle
 \vspace{-2em}
+
 \tikzset{place/.style={circle,ultra thick,draw=black,fill=white,minimum size=8mm},
   transition/.style={rectangle,thick,fill=black,minimum width=8mm,inner ysep=2pt},
   vtransition/.style={rectangle,thick,fill=black,minimum height=8mm,inner xsep=2pt},
@@ -84,19 +85,21 @@ This is a text in quote environment
 \newpage
 
 \part{A Part}
-\label{sec:org8ca247b}
+\label{sec:orgad595cb}
+\index{something}
+\index[other]{something else}
 \section{A section}
-\label{sec:org57b5471}
+\label{sec:orgf142d0f}
 \subsection{A subsection}
-\label{sec:org727348d}
+\label{sec:orgd9e3963}
 \subsubsection{A subsubsection}
-\label{sec:org2d4e2cb}
+\label{sec:org9d79446}
 \paragraph{A paragraph}
-\label{sec:orgea13965}
+\label{sec:org8179e82}
 
 
 \section*{Info}
-\label{sec:orgc58a8c5}
+\label{sec:org006d217}
 File generated using:
 \begin{Verbatim}[commandchars=\\\{\}]
 \colorbox{vbg}{
@@ -127,5 +130,5 @@ Compiled with poppler version 0.48.0
 \bibliographystyle{plain}
 \bibliography{refs}
 \printindex
-\printindex[petrinet]
+\printindex[other]
 \end{document}

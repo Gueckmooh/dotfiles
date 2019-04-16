@@ -52,20 +52,23 @@
 #+LATEX_HEADER_EXTRA: \ifbool{isDraft}{\SetWatermarkText{\textsc{Draft}}
 #+LATEX_HEADER_EXTRA: \SetWatermarkScale{2}}{}
 # #+LATEX_HEADER_EXTRA: \setcounter{section}{-1}
-#+LATEX_HEADER_EXTRA: \makeindex[title=General Index,options=-s 31083.ist -r]
-#+LATEX_HEADER_EXTRA: \makeindex[name=petrinet,title=Index for Petri Nets,options=-s 31083.ist -r]
 #+LATEX_HEADER_EXTRA: \newcommand{\firing}[1]{\ensuremath\xrightarrow{\quad #1 \quad}}
 #+LATEX_HEADER_EXTRA: \newcommand{\nm}{\ensuremath\mathbf{m}}
 #+LATEX_HEADER_EXTRA: \newcommand{\capa}{\ensuremath\text{Cap}}
 #+LATEX_HEADER_EXTRA: \makeatletter
 #+LATEX_HEADER_EXTRA: \renewcommand{\@idxitem}{\par\hangindent=20pt }
 #+LATEX_HEADER_EXTRA: \makeatother
+# Some indexes
+#+LATEX_HEADER_EXTRA: \makeindex[title=General Index,options=-s 31083.ist -r]
+#+LATEX_HEADER_EXTRA: \makeindex[name=other,title=Other Index,options=-s 31083.ist -r]
 #+LATEX_HEADER_EXTRA: 
 #+DESCRIPTION:
 #+KEYWORDS:
 #+SUBTITLE:
 #+LATEX_COMPILER: latexmk
 #+LaTeX: \vspace{-2em}
+
+# Some macros
 #+MACRO: ni @@latex:\noindent@@
 #+MACRO: im @@latex:\marginnote{\color{red}$1}@@
 #+MACRO: ref @@latex:\ref{$1}@@
@@ -234,6 +237,9 @@ This is a text in quote environment
 #+LaTeX: \newpage
 
 * A Part
+  # Index examples
+  #+INDEX: something
+  #+INDEX: something else :index other
 ** A section
 *** A subsection
 **** A subsubsection
@@ -268,4 +274,4 @@ This is a text in quote environment
 #+LaTeX: \nocite{*}
 #+BIBLIOGRAPHY: refs plain
 #+LaTeX: \printindex
-#+LaTeX: \printindex[petrinet]
+#+LaTeX: \printindex[other]
