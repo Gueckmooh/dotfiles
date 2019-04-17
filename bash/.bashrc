@@ -224,3 +224,13 @@ export PS1=$MYPS1
 # MPD confguration
 export MPD_HOST="localhost"
 export MPD_PORT="6601"
+
+
+# Custom completions in ~/.completions
+if [[ -d ~/.completions/ ]]
+then
+    for c in $(ls -C ~/.completions/)
+    do
+        source "$HOME/.completions/$c"
+    done
+fi
