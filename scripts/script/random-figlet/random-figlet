@@ -1,0 +1,27 @@
+#!/usr/bin/lua
+
+local function printf (...)
+    io.write (string.format (...))
+end
+
+local fonts = {}
+
+local pfile = io.popen (
+    [[figlist |\
+        awk '/Figlet fonts in this directory\:/ {p=1; next}\
+        /Figlet control files in this directory\:/ {exit}\
+        p']]
+)
+local lines = pfile:read "*a"
+pfile:close ()
+
+for f in lines:gmatch ("([^\n]+)\n")
+do
+    table.insert (fonts, f)
+end
+
+local ipt = io.read "*l"
+math.randomseed(os.time ())
+local selected_font = fonts[math.random(1, #fonts)]
+
+os.execute (string.format ("echo %s | figlet -w 100 -f %s", ipt, selected_font))
