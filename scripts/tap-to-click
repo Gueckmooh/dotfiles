@@ -1,0 +1,16 @@
+#!/bin/bash
+
+ID=$(xinput list | awk '/Touchpad/ {gsub ("id=","",$6); print $6}')
+NPROP=$(xinput list-props $ID | awk '/Tapping Enabled/ {gsub(/(\(|\)\:)/,"",$4); print $4; exit}')
+
+if [[ $# != 0 ]]
+then
+    case $1 in
+        "enable")
+            xinput set-prop $ID $NPROP 1
+            ;;
+        "disable")
+            xinput set-prop $ID $NPROP 0
+            ;;
+    esac
+fi
