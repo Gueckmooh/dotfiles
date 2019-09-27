@@ -13,17 +13,24 @@ function lb {
 function e {
     if [[ "$#" != 0 ]]
     then
-        emacsclient --alternate-editor 'vim' -c $*
+        emacsclient --alternate-editor '' -c $*
     else
-        emacsclient --alternate-editor 'vim' -c .
+        emacsclient --alternate-editor '' -c .
     fi
 }
 
 function macl {
     if [[ "$#" != 0 ]]
     then
-        emacsclient --alternate-editor 'vim' -nw $*
+        emacsclient --alternate-editor '' -nw $*
     else
-        emacsclient --alternate-editor 'vim' -nw .
+        emacsclient --alternate-editor '' -nw .
     fi
+}
+
+function awmini {
+    awesome-client <<EOF
+c = client.focus
+c.minimized = true
+EOF
 }

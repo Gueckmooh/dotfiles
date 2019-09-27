@@ -59,19 +59,19 @@ if [ -n "$force_color_prompt" ]; then
 fi
 
 #export color_prompt=yes;
-if [ "$color_prompt" = yes ]; then
-    #PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '
-    PS1='${debian_chroot:+($debian_chroot)}[\e[0;32m`ps ax | wc -l`(\j)\e[0m][\e[0;31m$?\e[0m]\e[1;34m\u\e[0m@\e[1;34m\h\e[0m:\e[0;36m\w\e[1;35m\$\e[0m\n\e[0;37m<\A>\e[0m '
-else
-    PS1='${debian_chroot:+($debian_chroot)}\u@\h:\w\$ '
-    #PS1='${debian_chroot:+($debian_chroot)}\e[1;34m\u\e[0m@\e[1;34m\h\e[0m:\e[0;36m\w\e[1;35m\$\e[0m '
-fi
+# if [ "$color_prompt" = yes ]; then
+#     #PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '
+#     # PS1='${debian_chroot:+($debian_chroot)}[\e[0;32m`ps ax | wc -l`(\j)\e[0m][\e[0;31m$?\e[0m]\e[1;34m\u\e[0m@\e[1;34m\h\e[0m:\e[0;36m\w\e[1;35m\$\e[0m\n\e[0;37m<\A>\e[0m '
+# else
+#     # PS1='${debian_chroot:+($debian_chroot)}\u@\h:\w\$ '
+#     #PS1='${debian_chroot:+($debian_chroot)}\e[1;34m\u\e[0m@\e[1;34m\h\e[0m:\e[0;36m\w\e[1;35m\$\e[0m '
+# fi
 unset color_prompt force_color_prompt
 
 # If this is an xterm set the title to user@host:dir
 case "$TERM" in
 xterm*|rxvt*)
-    PS1="\[\e]0;${debian_chroot:+($debian_chroot)}\u@\h: \w\a\]$PS1"
+    # PS1="\[\e]0;${debian_chroot:+($debian_chroot)}\u@\h: \w\a\]$PS1"
     ;;
 *)
     ;;
@@ -115,7 +115,7 @@ fi
 # sources /etc/bash.bashrc).
 if ! shopt -oq posix; then
   if [ -f /usr/share/bash-completion/bash_completion ]; then
-    . /usr/share/bash-completion/bash_completion
+      . /usr/share/bash-completion/bash_completion
   elif [ -f /etc/bash_completion ]; then
     . /etc/bash_completion
   fi
@@ -154,11 +154,11 @@ __ret_code () {
 }
 
 export PS1="┌─[\[$(tput sgr0)\]\[\033[38;5;7m\]\$(__ret_code)\[$(tput sgr0)\]\[\033[38;5;15m\]]\[$(tput sgr0)\]\[\033[38;5;1m\]\u\[$(tput sgr0)\]\[\033[38;5;15m\]@\[$(tput sgr0)\]\[\033[38;5;2m\]\h\[$(tput sgr0)\]\[\033[38;5;15m\]:\[$(tput sgr0)\]\[\033[38;5;63m\]\$(__pth)\[$(tput sgr0)\]\$(parse_git_branch)\[\033[38;5;15m\]\n└─[\[$(tput sgr0)\]\[\033[38;5;226m\]\A\[$(tput sgr0)\]\[\033[38;5;15m\]]\[$(tput sgr0)\]\[\033[38;5;1m\]---\[$(tput sgr0)\]\[\033[38;5;15m\]\\$ \[$(tput sgr0)\]"
-export MYPS1="┌─[\[$(tput sgr0)\]\[\033[38;5;7m\]\$(__ret_code)\[$(tput sgr0)\]\[\033[38;5;15m\]]\[$(tput sgr0)\]\[\033[38;5;1m\]\u\[$(tput sgr0)\]\[\033[38;5;15m\]@\[$(tput sgr0)\]\[\033[38;5;2m\]\h\[$(tput sgr0)\]\[\033[38;5;15m\]:\[$(tput sgr0)\]\[\033[38;5;63m\]\$(__pth)\[$(tput sgr0)\]\$(parse_git_branch)\[\033[38;5;15m\]\n└─[\[$(tput sgr0)\]\[\033[38;5;226m\]\A\[$(tput sgr0)\]\[\033[38;5;15m\]]\[$(tput sgr0)\]\[\033[38;5;1m\]---\[$(tput sgr0)\]\[\033[38;5;15m\]\\$ \[$(tput sgr0)\]"
+# export MYPS1="┌─[\[$(tput sgr0)\]\[\033[38;5;7m\]\$(__ret_code)\[$(tput sgr0)\]\[\033[38;5;15m\]]\[$(tput sgr0)\]\[\033[38;5;1m\]\u\[$(tput sgr0)\]\[\033[38;5;15m\]@\[$(tput sgr0)\]\[\033[38;5;2m\]\h\[$(tput sgr0)\]\[\033[38;5;15m\]:\[$(tput sgr0)\]\[\033[38;5;63m\]\$(__pth)\[$(tput sgr0)\]\$(parse_git_branch)\[\033[38;5;15m\]\n└─[\[$(tput sgr0)\]\[\033[38;5;226m\]\A\[$(tput sgr0)\]\[\033[38;5;15m\]]\[$(tput sgr0)\]\[\033[38;5;1m\]---\[$(tput sgr0)\]\[\033[38;5;15m\]\\$ \[$(tput sgr0)\]"
 
 # export PS1="┌─[\[$(tput sgr0)\]\[\033[38;5;7m\]\$?\[$(tput sgr0)\]\[\033[38;5;15m\]]\[$(tput sgr0)\]\[\033[38;5;1m\]\u\[$(tput sgr0)\]\[\033[38;5;15m\]@\[$(tput sgr0)\]\[\033[38;5;2m\]\h\[$(tput sgr0)\]\[\033[38;5;15m\]:\[$(tput sgr0)\]\[\033[38;5;63m\]\w\[$(tput sgr0)\]\$(parse_git_branch)\[\033[38;5;15m\]\n└─[\[$(tput sgr0)\]\[\033[38;5;226m\]\A\[$(tput sgr0)\]\[\033[38;5;15m\]]\[$(tput sgr0)\]\[\033[38;5;1m\]---\[$(tput sgr0)\]\[\033[38;5;15m\]\\$ \[$(tput sgr0)\]"
 
-export TERM=rxvt-unicode-256color
+# export TERM=rxvt-unicode-256color
 # export PATH=$PATH:/home/brignone/Documents/node/node-v6.11.3-linux-x64/bin
 export JAVA_HOME=/usr/lib/jvm/jdk-8-oracle-x64
 
@@ -218,7 +218,10 @@ fi
 unset __conda_setup
 # <<< conda init <<<
 
-export PS1=$MYPS1
+# pip
+PATH=$PATH:/home/brignone/.local/bin
+
+# export PS1=$MYPS1
 
 
 # MPD confguration

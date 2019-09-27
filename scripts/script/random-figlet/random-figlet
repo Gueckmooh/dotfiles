@@ -1,23 +1,19 @@
 #!/usr/bin/lua
 
-local function printf (...)
-    io.write (string.format (...))
-end
+local pretty = require "pl.pretty"
 
-local fonts = {}
-
-local pfile = io.popen (
-    [[figlist |\
-        awk '/Figlet fonts in this directory\:/ {p=1; next}\
-        /Figlet control files in this directory\:/ {exit}\
-        p']]
-)
+local pfile = io.popen ("figlist")
 local lines = pfile:read "*a"
 pfile:close ()
 
-for f in lines:gmatch ("([^\n]+)\n")
-do
-    table.insert (fonts, f)
+local fonts = {}
+from = false
+for line in lines:gmatch ("[^\n]*") do
+  if line == "Figlet control files in this directory:" then break end
+  if from then
+    fonts[#fonts+1] = line
+  end
+  if line == "Figlet fonts in this directory:" then from = true end
 end
 
 local ipt = io.read "*l"

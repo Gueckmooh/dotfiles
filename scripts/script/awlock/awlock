@@ -4,7 +4,7 @@ revert() {
     xset dpms 0 0 0
 }
 
-image=$(mktemp --suffix=.png)
+image=$(mktemp -u --suffix=.png)
 shot=(scrot)
 lockcmd=(i3lock -i "$image")
 pixelate=(-scale 10% -scale 1000%)
