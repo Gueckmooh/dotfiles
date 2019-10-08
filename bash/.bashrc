@@ -222,7 +222,10 @@ unset __conda_setup
 PATH=$PATH:/home/brignone/.local/bin
 
 # export PS1=$MYPS1
-
+powerline-daemon -q
+# POWERLINE_BASH_CONTINUATION=1
+# POWERLINE_BASH_SELECT=1
+# . /home/brignone/.local/lib/python3.7/site-packages/powerline/bindings/bash/powerline.sh
 
 # MPD confguration
 export MPD_HOST="localhost"
