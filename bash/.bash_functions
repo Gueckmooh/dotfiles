@@ -85,3 +85,10 @@ function notify-prepare {
     \"$1\" \"$2\"' | at $3"
     eval "$cmd"
 }
+
+function atrm-all {
+    for i in $(atq | awk '{print $1}')
+    do
+        atrm $i
+    done
+}

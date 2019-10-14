@@ -19,6 +19,10 @@ urxvt.colorUL:           #999999
 urxvt.underlineColor:    #999999
 
 URxvt.font: xft:Monospace:size=12
+
+! URxvt.font: xft:Inconsolata:size=16:antialias=true, \
+!             xft:DejaVu Sans:size=16:antialias=false
+
 URxvt*letterSpace: 0
 
 ! Rebind Ctrl + Shift + C/V
@@ -80,3 +84,4 @@ QuakeDD*depth: 32
 QuakeDD.background: rgba:2300/2700/2900/e800
 
 URxvt*meta8: false
+*locale: true

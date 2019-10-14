@@ -1,9 +1,6 @@
 mpd_host = localhost
- 
 mpd_port = 6601
- 
 mpd_music_dir = "/home/brignone/Musique"
-
 
 playlist_display_mode = "columns" # (classic/columns)
 #
@@ -13,9 +10,11 @@ search_engine_display_mode = "columns" # (classic/columns)
 #
 user_interface = "alternative" # (classic/alternative)
 
+song_columns_list_format = (20)[]{a} (50)[]{t|f:Title} (20)[]{b} (7f)[]{l}
+
 visualizer_fifo_path = "/tmp/mpd.fifo"
 visualizer_output_name = "my_fifo"
-visualizer_sync_interval = "30" 
+visualizer_sync_interval = "30"
 visualizer_in_stereo = "yes"
 visualizer_type = "spectrum"
 visualizer_look = "+|"

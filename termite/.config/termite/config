@@ -7,7 +7,8 @@
 #clickable_url = true
 #dynamic_title = true
 # font = Monospace 11
-font = inconsolata 14
+# font = inconsolata 14
+font = hack 12
 #fullscreen = true
 #icon_name = terminal
 #mouse_autohide = false
@@ -55,7 +56,8 @@ scrollback_lines = 10000
 #background = rgba(63, 63, 63, 0.8)
 
 # If unset, will reverse foreground and background
-highlight = #2f2f2f
+# highlight = #2f2f2f
+highlight = #AAAAAA
 
 # Colors from color0 to color254 can be set
 # color0 = #3f3f3f
