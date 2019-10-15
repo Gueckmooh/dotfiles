@@ -74,4 +74,79 @@ setup_gitconfig () {
     fi
 }
 
+setup_neomutt () {
+    if [[ "$force" ]]
+    then
+        rm -fr neomutt
+    fi
+
+    if [[ ! -d neomutt ]]
+    then
+        info "Creating dir neomutt"
+        mkdir -p neomutt/.config/neomutt
+    fi
+
+    if [[ ! -f neomutt/.config/neomutt/mailcap ]]
+    then
+        info "Setup mailcap"
+        cp bootstrap/mutt.mailcap neomutt/.config/neomutt/mailcap
+    fi
+
+    if [[ ! -f neomutt/.config/neomutt/neomuttrc ]]
+    then
+        info "Setup neomuttrc"
+
+        user ' - What is your name?'
+        read -e name
+        user ' - What is your email?'
+        read -e email
+        user ' - What is your proton-mail bridge password?'
+        read -e pmpasswd
+
+        sed -e "s/NAME/$name/g" -e "s/EMAIL/$email/g" -e "s/BRIDGE-PASSWORD/$pmpasswd/g" bootstrap/muttrc.template > neomutt/.config/neomutt/neomuttrc
+
+        success 'neomuttrc'
+    fi
+}
+
+setup_offlineimap () {
+    if [[ "$force" ]]
+    then
+        rm -fr offlineimap
+    fi
+
+    if [[ ! -d offlineimap ]]
+    then
+        info "Creating dir offlineimap"
+        mkdir -p offlineimap/
+    fi
+
+    if [[ ! -f offlineimap/.offlineimaprc ]]
+    then
+        info "Setup offlineimaprc"
+
+        user ' - What is your email?'
+        if [[ -z ${email+x} ]]
+        then
+            read -e email
+        else
+            info "Guessing $email"
+        fi
+
+        user ' - What is your proton-mail bridge password?'
+        if [[ -z ${pmpasswd+x} ]]
+        then
+            read -e pmpasswd
+        else
+            info "Guessing $pmpasswd"
+        fi
+
+        sed -e "s/EMAIL/$email/g" -e "s/BRIDGE-PASSWORD/$pmpasswd/g" bootstrap/offlineimaprc.template > offlineimap/.offlineimaprc
+
+        success 'neomuttrc'
+       fi
+}
+
 setup_gitconfig
+setup_neomutt
+setup_offlineimap
