@@ -5,6 +5,7 @@ set record=+Sent
 set postponed=+Drafts
 set trash=+Trash
 set mail_check=2 # seconds
+set check_new
 
 # to use notmuch's tagging features,
 # use virtual-mailboxes instead of mailboxes
@@ -15,6 +16,17 @@ virtual-mailboxes "INBOX" "notmuch://?query=folder:INBOX"
 virtual-mailboxes "Archive" "notmuch://?query=folder:Archive"
 virtual-mailboxes "Sent" "notmuch://?query=folder:Sent"
 virtual-mailboxes "Trash" "notmuch://?query=folder:Trash"
+virtual-mailboxes "Important" "notmuch://?query=folder:Folders.Important"
+virtual-mailboxes "AwesomeWM" "notmuch://?query=folder:Folders.awesomeWM"
+virtual-mailboxes "GCC" "notmuch://?query=folder:Folders.GCC"
+virtual-mailboxes "Voyage" "notmuch://?query=folder:Folders.Voyage"
+virtual-mailboxes "Followed Gits" "notmuch://?query='folder:\"Folders.Followed Gits\"'"
+virtual-mailboxes "My Git Repositories" "notmuch://?query='folder:\"Folders.My Git Repositories\"'"
+virtual-mailboxes "Way Cooler" "notmuch://?query='folder:\"Folders.Way Cooler\"'"
+virtual-mailboxes "All Mail" "notmuch://?query='folder:\"All Mail\"'"
+virtual-mailboxes "Laurence" "notmuch://?query=folder:Labels.Laurence"
+
+
 
 # smtp
 set my_user=EMAIL
@@ -37,8 +49,9 @@ set fast_reply                      # don't prompt for forward subject or to/sub
 set include                         # always quote message in reply
 set forward_quote                   # forward messages as quote
 set send_charset="utf-8"
-set signature=~/.signature
-set editor="emacsclient --alternate-editor '' -nw"
+set signature=~/.config/neomutt/signature
+# set editor="emacsclient --alternate-editor '' -nw"
+set editor="vim"
 
 # seems to be more consistent quoting regexp
 set quote_regexp="^(    ).+"
@@ -47,10 +60,10 @@ set quote_regexp="^(    ).+"
 # to add an address, either:
 # - manually add it: `alias nickname Long Name <my-friend@domain.tld>`
 # - press `a` when that person's email is selected
-# set alias_file=~/docs/addresses
-# set sort_alias=alias                # sort by name alphabetically
-# set reverse_alias                   # display aliased names when available
-# source $alias_file
+set alias_file=~/.config/neomutt/aliases
+set sort_alias=alias                # sort by name alphabetically
+set reverse_alias                   # display aliased names when available
+source $alias_file
 
 # urlscan: ctrl+b to interact with urls
 macro index,pager \cb "<pipe-message> urlscan<Enter>" "call urlscan to extract URLs out of a message"
@@ -59,8 +72,9 @@ macro attach,compose \cb "<pipe-entry> urlscan<Enter>" "call urlscan to extract 
 # index interface
 set mail_check_stats    # poll read/unread/etc counts
 set sidebar_visible
-set sidebar_width=15
-set sidebar_format="%B%* %S"
+set sidebar_width=25
+# set sidebar_format="%B%* %S"
+set sidebar_format = "%B%?F? [%F]?%* %?N?%N/?%S"
 set index_format="[%Z] %-10g %{%b %d}  %-20.20F  %s"
 # set index_format="[%Z] %-10y %{%b %d}  %-20.20F  %s"
 set status_format="-%f %V%>-"
@@ -103,7 +117,7 @@ bind attach <return> view-mailcap
 macro pager <return> "v<return>q"
 
 # save attachments to directory
-macro attach s <save-entry><bol>~/downloads/<eol>
+macro attach s <save-entry><bol>~/Downloads/<eol>
 
 # vim-like bindings
 bind index,pager g noop
@@ -120,6 +134,13 @@ bind index D delete-thread
 bind alias,index,pager,browser,query \Cd half-down
 bind alias,index,pager,browser,query \Cu half-up
 bind index,pager y group-reply
+
+bind index,pager \CP sidebar-prev
+# Ctrl-Shift-P – Previous Mailbox
+bind index,pager \CN sidebar-next
+# Ctrl-Shift-N – Next Mailbox
+bind index,pager \CO sidebar-open
+# Ctrl-Shift-O – Open Highlighted Mailbox
 
 # suppress "press any key to continue"
 unset wait_key
@@ -169,4 +190,4 @@ macro index,pager ga "<change-vfolder>Archive<Enter>"
 # it also mangles quotes, you lose the indent depth
 # see also: <http://nosubstance.me/post/mutt-secret-sauce/>
 # and: <https://github.com/oblitum/dotfiles/blob/ArchLinux/.local/bin/MIMEmbellish>
-macro compose \e5 "F nom convert \ny^T^Utext/html; charset=utf-8\n"
+# macro compose \e5 "F nom convert \ny^T^Utext/html; charset=utf-8\n"

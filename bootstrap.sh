@@ -147,6 +147,46 @@ setup_offlineimap () {
        fi
 }
 
+setup_notmuch () {
+    if [[ "$force" ]]
+    then
+        rm -fr notmuch
+    fi
+
+    if [[ ! -d notmuch ]]
+    then
+        info "Creating dir notmuch"
+        mkdir -p notmuch/
+    fi
+
+    if [[ ! -f offlineimap/.offlineimaprc ]]
+    then
+        info "Setup notmuch-config"
+
+        user ' - What is your email?'
+        if [[ -z ${email+x} ]]
+        then
+            read -e email
+        else
+            info "Guessing $email"
+        fi
+
+        user ' - What is your name?'
+        if [[ -z ${name+x} ]]
+        then
+            read -e name
+        else
+            info "Guessing $name"
+        fi
+
+        # sed -e "s/EMAIL/$email/g" -e "s/BRIDGE-PASSWORD/$pmpasswd/g" bootstrap/offlineimaprc.template > offlineimap/.offlineimaprc
+        sed -e "s/NAME/$name/g" -e "s/EMAIL/$email/g" bootstrap/notmuch-config.template > notmuch/.notmuch-config
+
+        success 'notmuch'
+    fi
+}
+
 setup_gitconfig
 setup_neomutt
 setup_offlineimap
+setup_notmuch

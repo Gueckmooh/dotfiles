@@ -19,7 +19,7 @@ fail () {
 }
 
 info "First of all install some packages"
-sudo pacman -S base-devel git man stow emacs xorg-server xorg-xinit mesa xterm xorg-twm awesome gdm xorg-server-xephyr opam python-pip ttf-dejavu ttf-droid ttf-fira-code ttf-fira-mono ttf-fira-sans ttf-font-awesome ttf-hack ttf-inconsolata ttf-liberation acpi luarocks mpd ncmpcpp zathura rofi redshift lolcat cowsay thefuck figlet firefox neofetch compton htop fortune-mod network-manager-applet scrot lxappearance offlineimap neomutt notmuch
+sudo pacman -S --needed base-devel git man stow emacs xorg-server xorg-xinit mesa xterm xorg-twm awesome gdm xorg-server-xephyr opam python-pip ttf-dejavu ttf-droid ttf-fira-code ttf-fira-mono ttf-fira-sans ttf-font-awesome ttf-hack ttf-inconsolata ttf-liberation acpi luarocks mpd ncmpcpp zathura rofi redshift lolcat cowsay thefuck figlet firefox neofetch compton htop fortune-mod network-manager-applet scrot lxappearance offlineimap neomutt notmuch pass bash-completion
 
 info "Install pikaur"
 mkdir -p ~/git/
@@ -47,5 +47,7 @@ fi
 
 git clone --single-branch --branch=testing --recursive https://github.com/gueckmooh/yet-another-awesome-config ~/.config/awesome
 git clone https://github.com/gueckmooh/.emacs.d ~/.emacs.d
+
+# gpg --full-gen-key -> pass
 
 sudo systemctl enable gdm

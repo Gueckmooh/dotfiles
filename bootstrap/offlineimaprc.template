@@ -13,6 +13,7 @@ autorefresh = 0.2
 quick = 10
 
 # update notmuch index after sync
+# Comment this if you use the widget
 postsynchook = notmuch new
 
 
@@ -22,7 +23,7 @@ localfolders = ~/.mail
 
 # delete remote mails that were deleted locally
 sync_deletes = yes
-
+sync_reads = yes
 
 [Repository main-remote]
 type = IMAP
@@ -37,7 +38,8 @@ holdconnectionopen = yes
 expunge = yes
 
 # sync only these folders
-folderfilter = lambda foldername: foldername in ['INBOX', 'Archive', 'Sent']
+# folderfilter = lambda foldername: foldername in ['INBOX', 'Archive', 'Sent']
+# folderfilter = lambda foldername: True
 
 # is broken, but connecting locally to bridge so should be ok
 ssl = no
