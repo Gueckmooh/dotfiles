@@ -107,6 +107,9 @@ setup_neomutt () {
 
         success 'neomuttrc'
     fi
+
+    if [[ ! -f neomutt/.config/neomutt/aliases ]]; then touch neomutt/.config/neomutt/aliases; fi
+    if [[ ! -f neomutt/.config/neomutt/signature ]]; then touch neomutt/.config/neomutt/signature; fi
 }
 
 setup_offlineimap () {
