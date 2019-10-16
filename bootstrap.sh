@@ -159,7 +159,7 @@ setup_notmuch () {
         mkdir -p notmuch/
     fi
 
-    if [[ ! -f offlineimap/.offlineimaprc ]]
+    if [[ ! -f notmuch/.notmuch-config ]]
     then
         info "Setup notmuch-config"
 
