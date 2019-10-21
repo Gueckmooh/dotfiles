@@ -7,7 +7,7 @@
 # If not running interactively, don't do anything
 case $- in
     *i*) ;;
-      *) return;;
+    *) return;;
 esac
 
 # don't put duplicate lines or lines starting with space in the history.
@@ -49,12 +49,12 @@ esac
 
 if [ -n "$force_color_prompt" ]; then
     if [ -x /usr/bin/tput ] && tput setaf 1 >&/dev/null; then
-	# We have color support; assume it's compliant with Ecma-48
-	# (ISO/IEC-6429). (Lack of such support is extremely rare, and such
-	# a case would tend to support setf rather than setaf.)
-	color_prompt=yes
+	      # We have color support; assume it's compliant with Ecma-48
+	      # (ISO/IEC-6429). (Lack of such support is extremely rare, and such
+	      # a case would tend to support setf rather than setaf.)
+	      color_prompt=yes
     else
-	color_prompt=
+	      color_prompt=
     fi
 fi
 
@@ -130,7 +130,11 @@ export XDG_CONFIG_HOME=/home/brignone/.config
 #sublime_text &
 
 # OPAM configuration
-. /home/brignone/.opam/opam-init/init.sh > /dev/null 2> /dev/null || true
+if which opam 2> /dev/null > /dev/null
+then
+    . /home/brignone/.opam/opam-init/init.sh > /dev/null 2> /dev/null || true
+    eval $(opam env)
+fi
 export JAVA_HOME=/usr/lib/jvm/jdk1.8.0_121
 export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01'
 
@@ -147,7 +151,7 @@ __ret_code () {
     ret=$?
     if [[ $ret == 0 ]]
     then
-       tput setaf 2; echo -n $ret
+        tput setaf 2; echo -n $ret
     else
         tput setaf 1; echo -n $ret
     fi
@@ -222,7 +226,7 @@ unset __conda_setup
 PATH=$PATH:/home/brignone/.local/bin
 
 # export PS1=$MYPS1
-powerline-daemon -q
+# powerline-daemon -q
 # POWERLINE_BASH_CONTINUATION=1
 # POWERLINE_BASH_SELECT=1
 # . /home/brignone/.local/lib/python3.7/site-packages/powerline/bindings/bash/powerline.sh
