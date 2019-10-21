@@ -18,9 +18,19 @@ fail () {
     exit
 }
 
-info "First of all install some packages"
-sudo pacman -S --needed base-devel git man stow emacs xorg-server xorg-xinit mesa xterm xorg-twm awesome gdm xorg-server-xephyr opam python-pip ttf-dejavu ttf-droid ttf-fira-code ttf-fira-mono ttf-fira-sans ttf-font-awesome ttf-hack ttf-inconsolata ttf-liberation acpi luarocks mpd ncmpcpp zathura rofi redshift lolcat cowsay thefuck figlet firefox neofetch compton htop fortune-mod network-manager-applet scrot lxappearance offlineimap neomutt notmuch pass bash-completion
 
+
+info "First of all install some packages"
+
+packages=(base-devel git man stow emacs xorg-server xorg-xinit mesa xterm
+xorg-twm awesome gdm xorg-server-xephyr opam python-pip ttf-dejavu ttf-droid
+ttf-fira-code ttf-fira-mono ttf-fira-sans ttf-font-awesome ttf-hack
+ttf-inconsolata ttf-liberation acpi luarocks mpd ncmpcpp zathura rofi redshift
+lolcat cowsay thefuck figlet firefox neofetch compton htop fortune-mod
+network-manager-applet scrot lxappearance offlineimap neomutt notmuch pass
+bash-completion w3m at)
+
+sudo pacman -S --needed ${packages[@]}
 
 info "Install pikaur"
 mkdir -p ~/git/
@@ -61,7 +71,7 @@ cd ~/.dotfiles
 bash bootstrap.sh
 for file in ~/.bash*
 do
-    info "Savind $file -> $file.old"
+    info "Saving $file -> $file.old"
     mv "$file" "$file.old"
 done
 
@@ -82,6 +92,26 @@ __stow redshift
 __stow rofi
 __stow termite
 __stow zathura
+__stow scripts
+
+mkdir -p ~/bin
+info "Create symbolic link for scripts in ~/bin"
+for file in $(find scripts/script -type f -executable)
+do
+    info "Creating ~/bin/$(basename ${file})"
+    ln -s ${file/scripts/~} ~/bin/$(basename ${file})
+done
+
+info "Creating folders"
+folders=(Documents Downloads Images Musics Videos)
+for dir in ${folders[@]}
+do
+    if [[ ! -d "$dir" ]]
+    then
+        info "Creating folder $dir"
+        mkdir -p "$dir"
+    fi
+done
 
 info "Bootstraping ended"
 neofetch
