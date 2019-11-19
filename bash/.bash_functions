@@ -78,12 +78,13 @@ function ddg {
 function notify-prepare {
     if test "$#" -ne 3
     then
-        exit 1
+        echo usage notify-prepare title message hour
+    else
+        cmd="echo 'notify-send -t 10000 -i \
+        ~/.config/awesome/cuddly-succotash/icons/spaceman.jpg \
+        \"$1\" \"$2\"' | at $3"
+        eval "$cmd"
     fi
-    cmd="echo 'notify-send -t 10000 -i \
-    ~/.config/awesome/cuddly-succotash/icons/spaceman.jpg \
-    \"$1\" \"$2\"' | at $3"
-    eval "$cmd"
 }
 
 function atrm-all {
