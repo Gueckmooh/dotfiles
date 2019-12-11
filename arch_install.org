@@ -1,0 +1,188 @@
+#+BEGIN_SRC sh
+  # First type the following line to get the right keyboard layout
+  loadkeys fr-latin1
+
+  timedatectl set-ntp true
+#+END_SRC
+
+Create 4 partitions: 
++ sda1 for /boot : 512M
++ sda2 for /     : 50G
++ sda3 for /home : The rest
++ sda4 for swap  : 32G
+
+Prepare the filesystem
+#+BEGIN_SRC sh
+  cryptsetup -y luksFormat /dev/sda2
+  cryptsetup -y luksFormat /dev/sda3
+  cryptsetup open /dev/sda2 cryptroot
+  cryptsetup open /dev/sda3 crypthome
+  mkfs.ext4 /dev/sda1
+  mkfs.ext4 /dev/mapper/cryptroot
+  mkfs.ext4 /dev/mapper/crypthome
+  mount /dev/mapper/cryptroot /mnt
+  mkdir /mnt/boot
+  mkdir /mnt/home
+  mount /dev/sda1 /mnt/boot
+  mount /dev/mapper/crypthomme /mnt/home
+  mkswap /dev/sda4
+  swapon /dev/sda4
+#+END_SRC
+
+Install Arch
+#+BEGIN_SRC sh
+  pacstrap /mnt base linux linux-firmware
+#+END_SRC
+
+Generate fstab
+#+BEGIN_SRC sh
+  genfstab -U /mnt >> /mnt/etc/fstab
+#+END_SRC
+
+Chroot
+#+BEGIN_SRC sh
+  arch-chroot /mnt
+#+END_SRC
+
+Install vim
+#+BEGIN_SRC sh
+  pacman -S vim
+#+END_SRC
+
+Set locale
+#+BEGIN_SRC sh
+  vim /etc/locale.gen # Uncomment at least fr_FR.UTF-8
+  locale-gen
+  export LANG=fr_FR.UTF-8
+#+END_SRC
+
+Set timezone
+#+BEGIN_SRC sh
+  ln -s /usr/share/zoneinfo/Europe/Paris /etc/localtime
+#+END_SRC
+
+Set the hardware clock to UTC
+#+BEGIN_SRC sh
+hwclock --systohc --utc
+#+END_SRC
+
+Set the hostname
+#+BEGIN_SRC sh
+  echo hostname > /etc/hostname
+#+END_SRC
+
+Set root password
+#+BEGIN_SRC sh
+  passwd
+#+END_SRC
+
+Create user
+#+BEGIN_SRC sh
+  useradd -m -g users -G wheel,games,power,optical,storage,scanner,lp,audio,video -s /bin/bash username
+  passwd username
+  pacman -S sudo grub-bios os-prober
+  visudo
+#+END_SRC
+
+Edit /etc/default/grub
+#+BEGIN_SRC sh
+  # Add:
+  GRUB_CMDLINE_LINUX="cryptdevice=/dev/sda2:cryptroot"
+#+END_SRC
+
+Edit /etc/mkinitcpio.conf
+#+BEGIN_SRC sh
+  # add keymap and encrypt to the hooks
+  mkinitcpio -p linux
+#+END_SRC
+
+
+Install grub
+#+BEGIN_SRC sh
+  grub-install --recheck /dev/sda
+  grub-mkconfig --output /boot/grub/grub.cfg
+#+END_SRC
+
+Enable network
+#+BEGIN_SRC sh
+  pacman -S dhcpcd
+  systemctl enable dhcpcd
+#+END_SRC
+
+Modify crypttab
+#+BEGIN_SRC sh
+  # add
+  crypthome /dev/sda3 /etc/home_passwd
+  swap /dev/sda4 /dev/urandom swap,cypher=aes-cbc-essiv:sha256,size=256
+  # Then replace swap uuid by /dev/mapper/swap in /etc/fstab
+
+  # and edit /etc/home_passwd
+  echo -n "password" > /etc/home_passwd
+  chown root:root /etc/home_passwd
+  chmod 400 /etc/home_passwd
+#+END_SRC
+
+Reboot
+#+BEGIN_SRC sh
+  exit
+  reboot
+#+END_SRC
+
+Setup some stuff
+#+BEGIN_SRC sh
+  localectl set-locale LANG=fr_FR.UTF-8
+  localectl set-keymap fr-latin1
+  mkinitcpio -p linux
+  reboot
+#+END_SRC
+
+Install awesome
+#+BEGIN_SRC sh
+  sudo pacman -S xorg-server xorg-xinit mesa xterm xorg-twm
+  sudo pacman -S awesome gdm xorg-server-xephyr
+#+END_SRC
+
+
+Things to install
+#+BEGIN_SRC sh
+  pacman -S base-devel man git emacs stow
+#+END_SRC
+
+Install pikaur
+#+BEGIN_SRC sh
+  mkdir -p ~/git/
+  git clone https://aur.archlinux.org/pikaur.git ~/git/pikaur
+  cd ~/git/pikaur
+  makepkg -fsri
+#+END_SRC
+
+For emacs
+#+BEGIN_SRC sh
+  pacman -S opam python-pip
+  pacman -S ttf-dejavu ttf-droid ttf-fira-code ttf-fira-mono ttf-fira-sans ttf-font-awesome ttf-hack ttf-inconsolata ttf-liberation
+
+  pikaur -S rtags
+  opam init
+  opam install ocp-indent
+#+END_SRC
+
+For awesome
+#+BEGIN_SRC sh
+  pacman -S acpi luarocks mpd ncmpcpp zathura rofi redshift lolcat cowsay thefuck figlet firefox neofetch compton htop fortune-mod network-manager-applet scrot lxappearence
+  pikaur -S termite-git matcha-gtk-theme
+  luarocks install luafilesystem
+  luarocks install penlight
+#+END_SRC
+
+For mutt
+#+BEGIN_SRC sh
+  pacman -S offlineimap neomutt notmuch
+  pikaur -S protonmail-bridge
+#+END_SRC
+
+#+BEGIN_SRC sh
+  for file in $(cd ~/dotfiles/; find scripts -type f -executable -print | sed 's/^scripts/~/g')
+  do
+      echo $file
+  done
+#+END_SRC
