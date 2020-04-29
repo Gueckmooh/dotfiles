@@ -106,10 +106,10 @@ info "Creating folders"
 folders=(Documents Downloads Images Musics Videos)
 for dir in ${folders[@]}
 do
-    if [[ ! -d "$dir" ]]
+    if [[ ! -d "~/$dir" ]]
     then
-        info "Creating folder $dir"
-        mkdir -p "$dir"
+        info "Creating folder ~/$dir"
+        mkdir -p "~/$dir"
     fi
 done
 
