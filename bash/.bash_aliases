@@ -64,3 +64,6 @@ alias rgrep='grep -R'
 alias mutt='neomutt'
 alias kill-emacs='emacsclient --eval "(save-buffers-kill-emacs)"'
 alias ns='netstat -nlptu'
+
+alias autolock-stop='kill -s SIGSTOP $(pgrep goautolock) 2> /dev/null'
+alias autolock-stop='kill -s SIGCONT $(pgrep goautolock) 2> /dev/null'
