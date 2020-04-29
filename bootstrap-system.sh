@@ -28,7 +28,7 @@ ttf-fira-code ttf-fira-mono ttf-fira-sans ttf-font-awesome ttf-hack
 ttf-inconsolata ttf-liberation acpi luarocks mpd ncmpcpp zathura rofi redshift
 lolcat cowsay thefuck figlet firefox neofetch compton htop fortune-mod
 network-manager-applet scrot lxappearance offlineimap neomutt notmuch pass
-bash-completion w3m at imagemagick xorg-xrandr i3lock-color)
+bash-completion w3m at imagemagick xorg-xrandr i3lock-color gnu-free-fonts)
 
 sudo pacman -S --needed ${packages[@]}
 
