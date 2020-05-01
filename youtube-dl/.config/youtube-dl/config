@@ -1,0 +1,20 @@
+# Save all videos under Videos directory with their title as filename
+--output '~/Videos/%(title)s.%(ext)s'
+
+# Restrict filenames to only ASCII characters, and avoid "&" and spaces in filenames
+--restrict-filenames
+
+# Download all the available subtitles of the video
+--all-subs
+
+# Embed subtitles in the video (only for mp4, webm and mkv videos)
+--embed-sub
+
+# Write metadata to the video file
+--add-metadata
+
+# Force resume of partially downloaded files
+--continue
+
+# Continue on download errors, for example to skip unavailable videos in a playlist
+--ignore-errors
