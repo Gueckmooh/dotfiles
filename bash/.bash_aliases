@@ -39,7 +39,7 @@ alias yt-dl-playlist='youtube-dl --extract-audio --audio-format mp3 -o "%(playli
 alias france-inter='DISPLAY=:0.0 tilix -e nvlc http://direct.franceinter.fr/live/franceinter-midfi.mp3'
 alias france-info='DISPLAY=:0.0 tilix -e nvlc  http://direct.franceinfo.fr/live/franceinfo-midfi.mp3'
 alias ploop='find . -regextype posix-awk -regex ".*\.(cpp|h)" -exec cp {} ../control_cc/src/. \;'
-alias ntab='firefox --new-tab'
+# alias ntab='firefox --new-tab'
 alias awkin='gawk -i inplace -v INPLACE_SUFFIX=.bak'
 alias mpv='mpv --save-position-on-quit'
 alias clipboard='xclip -selection clipboard'
@@ -65,5 +65,12 @@ alias mutt='neomutt'
 alias kill-emacs='emacsclient --eval "(save-buffers-kill-emacs)"'
 alias ns='netstat -nlptu'
 
-alias autolock-stop='kill -s SIGSTOP $(pgrep goautolock) 2> /dev/null'
-alias autolock-start='kill -s SIGCONT $(pgrep goautolock) 2> /dev/null'
+alias autolock-off='kill -s SIGSTOP $(pgrep goautolock) 2> /dev/null'
+alias autolock-on='kill -s SIGCONT $(pgrep goautolock) 2> /dev/null'
+
+# X2X
+alias x2x-home='TERM=xterm ssh -YC nia x2x -east -to :0.0'
+
+
+# SSH 
+alias ssh="TERM=xterm ssh"

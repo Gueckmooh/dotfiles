@@ -177,7 +177,8 @@ export JAVA_HOME=/usr/lib/jvm/jdk-8-oracle-x64
 
 
 # export EDITOR="emacs -nw"
-export EDITOR="emacsclient -nw"
+#export EDITOR="emacsclient -nw"
+export EDITOR="vim"
 
 if [[ ! -z $DISPLAY ]]
 then

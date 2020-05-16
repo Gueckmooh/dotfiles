@@ -95,3 +95,16 @@ function atrm-all {
 }
 
 flasher () { while true; do printf \\e[?5h; sleep 0.1; printf \\e[?5l; read -s -n1 -t1 && break; done; }
+
+ntab () {
+	if test $# -gt 0 
+	then
+		firefox --new-tab $*
+		if pgrep awesome > /dev/null
+		then
+			awesome-client 'require("awful").client.urgent.jumpto()'
+		fi
+	else
+		echo "You must give an argument"
+	fi
+}	
