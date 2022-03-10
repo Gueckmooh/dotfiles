@@ -1,4 +1,0 @@
-# rofi.theme: /usr/share/rofi/themes/android_notification.rasi
-rofi.theme: /home/brignone/.config/rofi/mytheme.rasi
-# rofi.theme: /home/brignone/.config/rofi/material.rasi
-#include "/usr/share/rofi/themes//android_notification.theme"
