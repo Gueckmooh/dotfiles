@@ -107,7 +107,7 @@ get_sessions() {
     done
     for s in ${TMUX_SESSIONS}
     do
-        if ! echo "${_PROJECTS}" | grep -w "${s}" 2>&1 1>/dev/null
+        if ! echo "${_PROJECTS}" | grep -w -- "${s}" 2>&1 1>/dev/null
         then
             echo "${s}"
         fi
