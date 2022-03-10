@@ -179,6 +179,7 @@ export JAVA_HOME=/usr/lib/jvm/jdk-8-oracle-x64
 # export EDITOR="emacs -nw"
 #export EDITOR="emacsclient -nw"
 export EDITOR="vim"
+export VISUAL="emacs"
 
 if [[ ! -z $DISPLAY ]]
 then
@@ -200,6 +201,12 @@ export LUA_PATH="./?/init.lua;$HOME/lua/?.lua;$HOME/lua/?/init.lua;$HOME/lua/?/?
 
 # Exercism
 # PATH=$PATH:/home/brignone/install/exercism
+
+# Polyspace
+export PATH=$PATH:/usr/local/Polyspace/R2021a/polyspace/bin/
+
+# Dart
+export PATH="$PATH":"$HOME/.pub-cache/bin"
 
 eval $(thefuck --alias)
 
@@ -226,6 +233,13 @@ unset __conda_setup
 # pip
 PATH=$PATH:/home/brignone/.local/bin
 
+# go
+PATH=/home/brignone/install/golang/bin:$PATH # for go 1.18 beta
+PATH=$PATH:/home/brignone/go/bin
+
+# flutter
+# PATH=/home/brignone/install/flutter/bin:$PATH
+
 # export PS1=$MYPS1
 # powerline-daemon -q
 # POWERLINE_BASH_CONTINUATION=1
@@ -244,4 +258,18 @@ then
     do
         source "$HOME/.completions/$c"
     done
+fi
+
+# tabtab source for electron-forge package
+# uninstall by removing these lines or running `tabtab uninstall electron-forge`
+[ -f /home/brignone/git/gb-studio/node_modules/tabtab/.completions/electron-forge.bash ] && . /home/brignone/git/gb-studio/node_modules/tabtab/.completions/electron-forge.bash
+
+if [ -f ~/.fzf_config.bash ]
+then
+    . ~/.fzf_config.bash
+fi
+
+if [ -f ~/.tmux_config.bash ]
+then
+    . ~/.tmux_config.bash
 fi
