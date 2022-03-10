@@ -78,7 +78,7 @@ then
 fi
 
 get_sessions() {
-    tmux ls | awk -F: '{print $1}'
+    tmux ls 2>/dev/null | awk -F: '{print $1}'
 }
 
 select_session() {
@@ -88,6 +88,7 @@ select_session() {
 }
 
 NAME="$(select_session)"
+if [ -z "${NAME}" ]; then exit 0; fi
 
 if [ "${NAME}" = "all" ]
 then
