@@ -6,13 +6,14 @@ alias cdA='cd $HOME/.config/awesome'
 alias cdC='cd $HOME/Documents/Cours'
 #alias ma='emacs -nw -q'
 alias ma='emacs -nw'
-alias me='emacsclient -n'
+# alias me='emacsclient -n'
 alias arm_ld='arm_none_eabi_ld -r -o'
 #alias c='clear'
 alias c='caja . &'
 alias egrep='egrep --color=auto'
 alias fgrep='fgrep --color=auto'
 alias grep='grep --color=auto'
+alias pg='pgrep'
 #alias Discord='/opt/Discord/Discord &'
 #alias discord='/opt/Discord/Discord &'
 alias subl='sublime_text'
@@ -72,5 +73,5 @@ alias autolock-on='kill -s SIGCONT $(pgrep goautolock) 2> /dev/null'
 alias x2x-home='TERM=xterm ssh -YC nia x2x -east -to :0.0'
 
 
-# SSH 
-alias ssh="TERM=xterm ssh"
+# SSH
+alias ssh="TERM=xterm-256color ssh"

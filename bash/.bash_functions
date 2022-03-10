@@ -19,13 +19,20 @@ function e {
     fi
 }
 
-function macl {
-    if [[ "$#" != 0 ]]
+function me {
+    TMUX_S=$(tmux display-message -p "#S")
+    if test "$TMUX_S" != "0"
     then
-        emacsclient --alternate-editor '' -nw $*
+        DAEMONIZE="--daemon=$TMUX_S"
+        SOCKET="--socket=$TMUX_S"
     else
-        emacsclient --alternate-editor '' -nw .
+        DEAMONIZE="--daemon"
     fi
+    if [[ $(ps aux | grep "emacs $DAEMONIZE" | wc -l) == 1 ]]
+    then
+        return
+    fi
+        emacsclient "$SOCKET" -n $*
 }
 
 function awmini {
@@ -97,7 +104,7 @@ function atrm-all {
 flasher () { while true; do printf \\e[?5h; sleep 0.1; printf \\e[?5l; read -s -n1 -t1 && break; done; }
 
 ntab () {
-	if test $# -gt 0 
+	if test $# -gt 0
 	then
 		firefox --new-tab $*
 		if pgrep awesome > /dev/null
@@ -107,4 +114,4 @@ ntab () {
 	else
 		echo "You must give an argument"
 	fi
-}	
+}
