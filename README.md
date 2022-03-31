@@ -11,14 +11,14 @@ To install this repository :
 
 Rework these configs:
 
-- [ ] awesome
+- [X] awesome
 - [X] bash
-- [ ] bin
+- [X] bin
 - [ ] cava
 - [ ] compton
 - [ ] conky
 - [ ] cows
-- [ ] emacs
+- [X] emacs
 - [ ] fish
 - [ ] fzf
 - [ ] git

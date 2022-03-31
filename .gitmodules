@@ -1,12 +1,9 @@
-[submodule "emacs/.emacs.d"]
+[submodule "emacs/dot-emacs.d"]
 	path = emacs/dot-emacs.d
 	url = https://github.com/Gueckmooh/.emacs.d.git
-[submodule "awesome/.config/awesome"]
+[submodule "awesome/dot-config/awesome"]
 	path = awesome/dot-config/awesome
 	url = https://github.com/Gueckmooh/yet-another-awesome-config.git
-[submodule "bin/sources/backlight"]
-	path = bin/sources/backlight
-	url = git@github.com:Gueckmooh/backlight.git
 [submodule "mutt/.config/mutt"]
 	path = mutt/.config/mutt
 	url = git@github.com:Gueckmooh/mutt_config.git
