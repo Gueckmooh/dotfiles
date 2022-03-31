@@ -26,3 +26,40 @@ system. This dotfile repository is based on the use of GNU Stow.
     $ bash bootstrap.sh
     $ bash install.sh <dir> # With the wanted configuration
   #+END_EXAMPLE
+
+* Rework
+  Rework these configs:
+  - [ ] :: awesome
+  - [X] :: bash
+  - [ ] :: bin
+  - [ ] :: cava
+  - [ ] :: compton
+  - [ ] :: conky
+  - [ ] :: cows
+  - [ ] :: emacs
+  - [ ] :: fish
+  - [ ] :: fzf
+  - [ ] :: git
+  - [ ] :: htop
+  - [ ] :: install.sh
+  - [ ] :: latexmk
+  - [ ] :: layouts
+  - [ ] :: mailcap
+  - [ ] :: mpd
+  - [ ] :: mutt
+  - [ ] :: ncmpcpp
+  - [ ] :: neomutt
+  - [ ] :: notmuch
+  - [ ] :: offlineimap
+  - [ ] :: ranger
+  - [ ] :: redshift
+  - [ ] :: rofi
+  - [ ] :: scripts
+  - [ ] :: templates
+  - [ ] :: termite
+  - [ ] :: themes
+  - [X] :: tmux
+  - [ ] :: urxvt
+  - [ ] :: vim
+  - [ ] :: youtube-dl
+  - [ ] :: zathura
