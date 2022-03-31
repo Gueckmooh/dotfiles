@@ -1,8 +1,8 @@
 [submodule "emacs/.emacs.d"]
-	path = emacs/.emacs.d
+	path = emacs/dot-emacs.d
 	url = https://github.com/Gueckmooh/.emacs.d.git
 [submodule "awesome/.config/awesome"]
-	path = awesome/.config/awesome
+	path = awesome/dot-config/awesome
 	url = https://github.com/Gueckmooh/yet-another-awesome-config.git
 [submodule "bin/sources/backlight"]
 	path = bin/sources/backlight
