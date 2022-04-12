@@ -14,14 +14,14 @@ Rework these configs:
 - [X] awesome
 - [X] bash
 - [X] bin
-- [ ] cava
-- [ ] compton
-- [ ] conky
-- [ ] cows
+- [X] cava
+- [X] compton
+- [X] conky
+- [X] cows
 - [X] emacs
-- [ ] fish
-- [ ] fzf
-- [ ] git
+- [X] fish
+- [X] fzf
+- [X] git
 - [ ] htop
 - [ ] install.sh
 - [ ] latexmk

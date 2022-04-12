@@ -13,5 +13,5 @@ export PATH="$PATH":"$HOME/.pub-cache/bin"
 export PATH=$PATH:/home/brignone/.local/bin
 
 # go
-export PATH=/home/brignone/install/golang/bin:$PATH # for go 1.18 beta
+# export PATH=/home/brignone/install/golang/bin:$PATH # for go 1.18 beta
 export PATH=$PATH:/home/brignone/go/bin
