@@ -93,7 +93,7 @@ __require lsp.sh
 # Display welcome message
 if [[ ! -z $DISPLAY ]]
 then
-    $HOME/bin/random-figlet "Welcome !" | lolcat
+    $HOME/bin/new-random-figlet "Welcome !" | lolcat
     if [ -f "$XDG_CONFIG_HOME/cows/totoro.cow" ]; then
         fortune -s 2> /dev/null | cowsay -f $HOME/.config/cows/totoro.cow | lolcat
     fi
