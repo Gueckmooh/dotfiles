@@ -75,7 +75,7 @@ then
 fi
 
 create_detached_session() {
-    local DIR="$1"
+    local DIR="$(realpath $1)"
     local NAME="$2"
     (
         TMUX=''
